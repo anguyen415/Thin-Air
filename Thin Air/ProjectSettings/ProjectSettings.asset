@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: d781e7e94cb52ff44b512a3962c3e72d
+  productGUID: d114f81bd9d99fb448f1695bb90c6edf
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -125,6 +125,7 @@ PlayerSettings:
   m_HolographicPauseOnTrackingLoss: 1
   xboxOneDisableKinectGpuReservation: 0
   xboxOneEnable7thCore: 0
+  isWsaHolographicRemotingEnabled: 0
   vrSettings:
     cardboard:
       depthFormat: 0
@@ -648,8 +649,8 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: b2d15533-991d-4737-87ac-094388b9dfa8
-  projectName: Thin Air
+  cloudProjectId: ae89fcce-5448-44a7-88ff-3aca21619597
+  projectName: Thin Air (1)
   organizationId: anguyen415
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
