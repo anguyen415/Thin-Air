@@ -4,41 +4,28 @@ using UnityEngine;
 
 public class PlayerMovement_anh : MonoBehaviour
 {
- 
-    private CharacterController controller;
     [SerializeField]
-    private float speed = 5;
+    private float Speed;
     [SerializeField]
-    private float jumpHeight = 2f;
+    private float JumpHeight;
     [SerializeField]
-    private float gravity = 9;
-    private Vector3 velocity;
+    private float Gravity;
+    private CharacterController _controller;
+    private Vector3 moveDirection;
 
-
-    void Start()
+    private void Start()
     {
-        controller = GetComponent<CharacterController>();
+        _controller = GetComponent<CharacterController>();
     }
-    void Update()
+
+    private void Update()
     {
-        if (controller.isGrounded && velocity.y < 0)
-        {
-            velocity.y = 0f;
+        moveDirection = new Vector3(Input.GetAxis("Horizontal") * Speed, moveDirection.y, Input.GetAxis("Vertical") * Speed);
+        if (Input.GetButtonDown("Jump") && _controller.isGrounded)
+            moveDirection.y = JumpHeight;
+        moveDirection.y = moveDirection.y + (Physics.gravity.y * Gravity * Time.deltaTime);
+        _controller.Move(moveDirection * Time.deltaTime);
 
-        }
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * speed);
-        if (move != Vector3.zero)
-        {
-            transform.forward = move;
-        }
-        if (Input.GetButton("Jump") && controller.isGrounded)
-        {
-            velocity.y = jumpHeight;
-        }
-        velocity.y -= gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
     }
-        
-
 }
+
