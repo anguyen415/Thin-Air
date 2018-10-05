@@ -1105,7 +1105,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 13814e348b6fe4a45b1fd9ad8356a1c5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 652.5
+      value: 652.6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 13814e348b6fe4a45b1fd9ad8356a1c5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6056,7 +6056,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2043432150}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.03
   m_Height: 0.09
   m_Direction: 2
