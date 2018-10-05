@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class Oxygen : MonoBehaviour
 {
     [SerializeField]
-    private int CurrentHealth = 100;
+    private int CurrentOxygen;
     [SerializeField]
-    private int MaxHealth = 100;
+    private int MaxOxygen = 100;
     [SerializeField]
     private float tickRate = 3; //in ms --> 300 means -1 health every 3 seconds
     [SerializeField]
@@ -18,6 +18,7 @@ public class Health : MonoBehaviour
     void Start()
     {
         delaytime = Time.time + tickRate;
+        CurrentOxygen = MaxOxygen;
     }
     void Update()
     {
@@ -26,22 +27,38 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (CurrentHealth < 0)
+        if (CurrentOxygen < 0)
         {
-            CurrentHealth = 0;
+            CurrentOxygen = 0;
         }
-        if (CurrentHealth > MaxHealth)
+        if (CurrentOxygen > MaxOxygen)
         {
-            CurrentHealth = MaxHealth;
+            CurrentOxygen = MaxOxygen;
         }
         if (Time.time > delaytime)
         {
-            CurrentHealth = CurrentHealth - decreasePerTick;
+            CurrentOxygen = CurrentOxygen - decreasePerTick;
             delaytime = Time.time + tickRate;
         }
-        if (CurrentHealth <= 0)
+        if (CurrentOxygen <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+    public void HurtPlayer(int damage)
+    {
+        CurrentOxygen -= damage;
+        if (CurrentOxygen < 0)
+        {
+            CurrentOxygen = 0;
+        }
+    }
+    public void RestoreOxygen(int oxyamount)
+    {
+        CurrentOxygen += oxyamount;
+        if (CurrentOxygen > MaxOxygen)
+        {
+            CurrentOxygen = MaxOxygen;
         }
     }
 }
