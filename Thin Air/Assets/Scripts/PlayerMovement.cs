@@ -6,10 +6,8 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     [SerializeField]
     private bool _useFixedUpdateForInput = false;
-
     [SerializeField]
     private float _speed = 3.0f;
-
     [SerializeField]
     private float verticalVelocity;
     [SerializeField]
