@@ -12,6 +12,12 @@ public class PlayerMovement_anh : MonoBehaviour
     private float Gravity;
     private CharacterController _controller;
     private Vector3 moveDirection;
+    [SerializeField]
+    private float rotateSpeed;
+    [SerializeField]
+    private Transform pivot;
+    [SerializeField]
+    private GameObject playerModel;
 
     private void Start()
     {
@@ -21,10 +27,27 @@ public class PlayerMovement_anh : MonoBehaviour
     private void Update()
     {
         moveDirection = new Vector3(Input.GetAxis("Horizontal") * Speed, moveDirection.y, Input.GetAxis("Vertical") * Speed);
-        if (Input.GetButtonDown("Jump") && _controller.isGrounded)
-            moveDirection.y = JumpHeight;
+        float yStorage = moveDirection.y;
+       /* moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
+        moveDirection = moveDirection.normalized * Speed;
+        moveDirection.y = yStorage;*/
+        if (_controller.isGrounded)
+        {
+            moveDirection.y = 0f;
+            if (Input.GetButtonDown("Jump"))
+            {
+                moveDirection.y = JumpHeight;
+
+            }
+        }
         moveDirection.y = moveDirection.y + (Physics.gravity.y * Gravity * Time.deltaTime);
         _controller.Move(moveDirection * Time.deltaTime);
+        if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            //transform.rotation = Quaternion.Euler(0f, pivot.rotation.eulerAngles.y, 0f);
+            Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDirection.x, moveDirection.y , 0f));
+            playerModel.transform.rotation = Quaternion.Slerp(playerModel.transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
+        }
 
     }
 }
