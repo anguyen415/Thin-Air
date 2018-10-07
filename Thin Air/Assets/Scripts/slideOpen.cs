@@ -6,7 +6,8 @@ public class slideOpen : MonoBehaviour {
 	public	GameObject LeftDoor;
 	public GameObject RightDoor;
 	Vector3 origL, origR;
-	public GameObject player;
+	//public GameObject player;
+	GameObject player;
 
 	float Distance = 4;
 
@@ -20,6 +21,7 @@ public class slideOpen : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
+		player = GameObject.FindGameObjectWithTag("Player");
 		origL = LeftDoor.transform.localPosition;
 		origR = RightDoor.transform.localPosition;
 	}
