@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1619,6 +1619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftDoor: {fileID: 291999109}
   RightDoor: {fileID: 273546568}
+  player: {fileID: 0}
   playerClose: 0
   offsetX: 9.5
   offsetZ: -2
@@ -2314,7 +2315,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
   m_LocalRotation: {x: 0.50000006, y: -0, z: -0, w: 0.8660253}
-  m_LocalPosition: {x: 0, y: 11.9, z: -3.52}
+  m_LocalPosition: {x: -1.6251299, y: 11.8880005, z: -3.519392}
   m_LocalScale: {x: 0.71428573, y: 0.7142863, z: 0.7142863}
   m_Children:
   - {fileID: 1881397950}
@@ -3496,6 +3497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftDoor: {fileID: 1719588676}
   RightDoor: {fileID: 1675526104}
+  player: {fileID: 0}
   playerClose: 0
   offsetX: -9.5
   offsetZ: 2.5
@@ -4168,6 +4170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftDoor: {fileID: 1894896207}
   RightDoor: {fileID: 1878679266}
+  player: {fileID: 0}
   playerClose: 0
   offsetX: -9.5
   offsetZ: 2.5
@@ -4221,6 +4224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftDoor: {fileID: 1282595023}
   RightDoor: {fileID: 1086272999}
+  player: {fileID: 0}
   playerClose: 0
   offsetX: -9.5
   offsetZ: 2.5
@@ -4274,6 +4278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftDoor: {fileID: 1395367060}
   RightDoor: {fileID: 1877292778}
+  player: {fileID: 0}
   playerClose: 0
   offsetX: 9.5
   offsetZ: -2
@@ -4322,6 +4327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftDoor: {fileID: 1500312976}
   RightDoor: {fileID: 125889761}
+  player: {fileID: 0}
   playerClose: 0
   offsetX: 9.5
   offsetZ: -2
@@ -4565,6 +4571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftDoor: {fileID: 750112152}
   RightDoor: {fileID: 2023212323}
+  player: {fileID: 0}
   playerClose: 0
   offsetX: 2.2
   offsetZ: 9
@@ -4761,13 +4768,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1130348258}
-  m_LocalRotation: {x: 0, y: -0.92387956, z: 0.38268343, w: 0}
-  m_LocalPosition: {x: -0, y: 6.28, z: -1.06}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalRotation: {x: 5.7539583e-17, y: -0.9396926, z: 0.3420202, w: -2.09427e-17}
+  m_LocalPosition: {x: 0, y: 7.7733674, z: -0.22222202}
+  m_LocalScale: {x: 111.111115, y: 111.11127, z: 111.11127}
   m_Children: []
   m_Father: {fileID: 1974880874}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 135, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 130, y: 0, z: 0}
 --- !u!108 &1130348260
 Light:
   m_ObjectHideFlags: 0
@@ -4780,7 +4787,7 @@ Light:
   m_Color: {r: 0.9716981, g: 0.9700939, b: 0.81127626, a: 1}
   m_Intensity: 15
   m_Range: 20
-  m_SpotAngle: 60
+  m_SpotAngle: 50
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -4800,7 +4807,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 5, y: 1}
-  m_BounceIntensity: 10
+  m_BounceIntensity: 5
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -6133,15 +6140,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 42a7c58510848c64a9208254cb64098c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.69
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 42a7c58510848c64a9208254cb64098c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.72
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 42a7c58510848c64a9208254cb64098c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 3.15
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 42a7c58510848c64a9208254cb64098c, type: 3}
       propertyPath: m_LocalRotation.x
@@ -6178,10 +6185,6 @@ Prefab:
     - target: {fileID: 400000, guid: 42a7c58510848c64a9208254cb64098c, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 42a7c58510848c64a9208254cb64098c, type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42a7c58510848c64a9208254cb64098c, type: 3}
@@ -8413,13 +8416,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cf77d7281756442a45027241c48b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   Speed: 20
   JumpHeight: 15
-=======
-  Speed: 15
-  JumpHeight: 10
->>>>>>> ee25a40759a4e0bffe35292cd09a43fac00ce2d5
   Gravity: 4
   rotateSpeed: 3
   pivot: {fileID: 0}
@@ -8434,13 +8432,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 3.95
-  m_Radius: 1.46
+  m_Height: 2
+  m_Radius: 1.97
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.9, z: 0}
+  m_Center: {x: -2.69, y: -1.8, z: 3.28}
 --- !u!4 &2040120727
 Transform:
   m_ObjectHideFlags: 0
@@ -8448,7 +8446,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2040120724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.84, y: 650.2, z: -10.49}
+  m_LocalPosition: {x: 0.84, y: 653.48, z: -10.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 534669905}
