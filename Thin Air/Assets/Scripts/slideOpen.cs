@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class slideOpen : MonoBehaviour {
-	GameObject Left;
-	GameObject Right;
-	Vector3 originL;
-	Vector3 originR;
+	public	GameObject LeftDoor;
+	public GameObject RightDoor;
+	Vector3 origL, origR;
 	public GameObject player;
 
-	public float Distance;
+	float Distance = 4;
 
 	public bool playerClose;
+	public float offsetX;
+	public float offsetZ;
 	float Xdistance;
 	float Zdistance;
 
@@ -19,10 +20,8 @@ public class slideOpen : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		Left = GameObject.Find("Door_1");
-		Right = GameObject.Find("Door_2");
-		originL = Left.transform.localPosition;
-		originR = Right.transform.localPosition;
+		origL = LeftDoor.transform.localPosition;
+		origR = RightDoor.transform.localPosition;
 	}
 
 	// Update is called once per frame
@@ -38,20 +37,20 @@ public class slideOpen : MonoBehaviour {
 
 	void openDoors()
 	{
-		float newX = originL.x + 2.3f;
-		Left.transform.localPosition.Set(newX, Left.transform.localPosition.y, Left.transform.localPosition.z);
+		LeftDoor.transform.localPosition = new Vector3(origL.x + 2.3f, origL.y, origL.z);
+		RightDoor.transform.localPosition = new Vector3(origR.x - 2.3f, origR.y, origR.z);
 	}
 
 	void closeDoors()
 	{
-		float newX = originL.x;
-		Left.transform.localPosition.Set(newX, Left.transform.localPosition.y, Left.transform.localPosition.z);
+		LeftDoor.transform.localPosition = new Vector3(origL.x, origL.y, origL.z);
+		RightDoor.transform.localPosition = new Vector3(origR.x, origR.y, origR.z);
 	}
 
 	void checkDistance()
 	{
-		Xdistance = Mathf.Abs(player.transform.position.x - transform.position.x + 1.5f);
-		Zdistance = Mathf.Abs(player.transform.position.z - transform.position.z);
+		Xdistance = Mathf.Abs(player.transform.position.x - transform.position.x + offsetX);
+		Zdistance = Mathf.Abs(player.transform.position.z - transform.position.z + offsetZ);
 		if (Xdistance < Distance && Zdistance < Distance)
 			playerClose = true;
 		else
