@@ -45,7 +45,7 @@ public class PlayerMovement_anh : MonoBehaviour
         if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             //transform.rotation = Quaternion.Euler(0f, pivot.rotation.eulerAngles.y, 0f);
-            Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDirection.x, moveDirection.y , 0f));
+            Quaternion newRotation = Quaternion.LookRotation(new Vector3(-1*moveDirection.x, 0f, -1* moveDirection.z));
             playerModel.transform.rotation = Quaternion.Slerp(playerModel.transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
         }
 
