@@ -15,13 +15,13 @@ public class OxygenBar : MonoBehaviour {
 	void Start () {
 
         oxygenBar = GetComponent<Image>();
-        currentOxygen = (player.GetComponent("Oxygen") as Oxygen).CurrentOxygen;
+        currentOxygen = Oxygen.CurrentOxygen;
         maxOxygen = (player.GetComponent("Oxygen") as Oxygen).MaxOxygen;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        currentOxygen = (player.GetComponent("Oxygen") as Oxygen).CurrentOxygen;
+        currentOxygen = Oxygen.CurrentOxygen;
         oxygenBar.fillAmount = currentOxygen / maxOxygen;
 	}
 }

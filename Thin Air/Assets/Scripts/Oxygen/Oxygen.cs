@@ -7,7 +7,7 @@ public class Oxygen : MonoBehaviour
 {
     public Text oxygenText;
     public Image oxygenBar;
-    public float CurrentOxygen = 100f;
+    public static float CurrentOxygen = 100f;
     public float MaxOxygen = 100f;
     [SerializeField]
     private float tickRate = 3; //in ms --> 300 means -1 health every 3 seconds
@@ -45,7 +45,7 @@ public class Oxygen : MonoBehaviour
         }
         if (CurrentOxygen <= 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject); //Death animation?
         }
         SetOxygenText();
         oxygenBar.fillAmount = CurrentOxygen / MaxOxygen;
