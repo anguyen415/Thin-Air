@@ -5,20 +5,23 @@ using UnityEngine.UI;
 
 public class Oxygen : MonoBehaviour
 {
-    [SerializeField]
-    private int CurrentOxygen;
-    [SerializeField]
-    private int MaxOxygen = 100;
+    public Text oxygenText;
+    public Image oxygenBar;
+    public float CurrentOxygen;
+    public float MaxOxygen = 100;
     [SerializeField]
     private float tickRate = 3; //in ms --> 300 means -1 health every 3 seconds
     [SerializeField]
-    private int decreasePerTick = 1;
+    private float decreasePerTick = 1;
     private float delaytime;
     // Use this for initialization
+   
     void Start()
     {
         delaytime = Time.time + tickRate;
+        oxygenBar = GetComponent<Image>();
         CurrentOxygen = MaxOxygen;
+        SetOxygenText();
     }
     void Update()
     {
@@ -44,6 +47,8 @@ public class Oxygen : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        SetOxygenText();
+        oxygenBar.fillAmount = CurrentOxygen / MaxOxygen;
     }
     public void HurtPlayer(int damage)
     {
@@ -60,5 +65,11 @@ public class Oxygen : MonoBehaviour
         {
             CurrentOxygen = MaxOxygen;
         }
+    }
+
+
+    public void SetOxygenText()
+    {
+        oxygenText.text = "Oxygen Level: " + (CurrentOxygen/MaxOxygen*100).ToString() + "%";
     }
 }
