@@ -6,6 +6,7 @@ public class SetActive : MonoBehaviour {
     private bool PlayerinRange = false;
     [SerializeField]
     GameObject interactableObject;
+    [SerializeField]
     GameObject player;
 
 	// Use this for initialization
@@ -18,7 +19,6 @@ public class SetActive : MonoBehaviour {
             {
             if (Input.GetButtonDown("Interact")){
                 interactableObject.SetActive(true);
-                player = GameObject.FindWithTag("Player");
                 player.GetComponent<PlayerMovement_anh>().enabled = false;
             }
             else if (Input.GetButtonDown("Cancel")){
