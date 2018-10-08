@@ -7,17 +7,14 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
-    bool isAlive = true;
 
 
-    [SerializeField]
-    private Text DeathText;
+    public Text DeathText;
 
-
-    [SerializeField]
-    private GameObject ResumeButton;
+    public GameObject ResumeButton;
 	// Use this for initialization
 	void Start () {
+        Time.timeScale = 1f;
         Resume();
         DeathText.gameObject.SetActive(false);
         ResumeButton.SetActive(true);
@@ -52,6 +49,7 @@ public class PauseMenu : MonoBehaviour {
         
         if (Oxygen.CurrentOxygen <= 0)
         {
+            Time.timeScale = 0f;
             ResumeButton.SetActive(false);
             DeathText.gameObject.SetActive(true);
             Pause();

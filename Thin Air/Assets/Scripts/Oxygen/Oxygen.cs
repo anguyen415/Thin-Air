@@ -12,7 +12,7 @@ public class Oxygen : MonoBehaviour
     [SerializeField]
     private float tickRate = 3; //in ms --> 300 means -1 health every 3 seconds
     [SerializeField]
-    private float decreasePerTick = 1;
+    private int decreasePerTick = 1;
     private float delaytime;
     // Use this for initialization
    
@@ -40,7 +40,7 @@ public class Oxygen : MonoBehaviour
         }
         if (Time.time > delaytime)
         {
-            CurrentOxygen = CurrentOxygen - decreasePerTick;
+            HurtPlayer(decreasePerTick);//CurrentOxygen = CurrentOxygen - decreasePerTick;
             delaytime = Time.time + tickRate;
         }
         if (CurrentOxygen <= 0)
@@ -52,10 +52,14 @@ public class Oxygen : MonoBehaviour
     }
     public void HurtPlayer(int damage)
     {
-        CurrentOxygen -= damage;
-        if (CurrentOxygen < 0)
+        //CurrentOxygen -= damage;
+        if (CurrentOxygen - damage < 0)
         {
             CurrentOxygen = 0;
+        }
+        else
+        {
+            CurrentOxygen -= damage;
         }
     }
     public void RestoreOxygen(int oxyamount)
