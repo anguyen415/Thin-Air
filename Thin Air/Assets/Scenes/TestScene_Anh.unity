@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -354,9 +354,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target_player: {fileID: 1122973267}
-  height: 11.6
-  distance: 20
-  angle: 180
+  offset: {x: 0, y: 0, z: 0}
+  useOffsetValues: 0
+  rotateSpeed: 0
+  pivot: {fileID: 0}
+  minViewAngle: 0
+  maxViewAngle: 0
+  invertY: 0
 --- !u!1 &549332059
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +567,9 @@ MonoBehaviour:
   Speed: 10
   JumpHeight: 25
   Gravity: 2
+  rotateSpeed: 0
+  pivot: {fileID: 0}
+  playerModel: {fileID: 0}
 --- !u!136 &1122973264
 CapsuleCollider:
   m_ObjectHideFlags: 0
