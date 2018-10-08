@@ -9,6 +9,8 @@ public class KeyPad : MonoBehaviour {
     private string alpha;
     [SerializeField]
     private Text input;
+   /* [SerializeField]
+    GameObject keyPad;*/
 	// Use this for initialization
 	void Start () {
 		
@@ -48,5 +50,19 @@ public class KeyPad : MonoBehaviour {
             index = 0;
         }
     }
-    
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            FindObjectOfType<SetActive>().Press();
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            FindObjectOfType<SetActive>().Left();
+        }
+    }
+
 }
