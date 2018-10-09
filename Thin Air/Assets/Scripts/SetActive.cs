@@ -8,23 +8,34 @@ public class SetActive : MonoBehaviour {
     GameObject interactableObject;
     [SerializeField]
     GameObject player;
-   
+    [SerializeField]
+    private GameObject Cancel;
+    [SerializeField]
+    private GameObject Interact;
+    [SerializeField]
+    private bool press = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	}
 
     // Update is called once per frame
     void Update() {
-        if(PlayerinRange)
-            {
+        if (PlayerinRange) {
+            if (!press) 
+                Interact.SetActive(true);
             if (Input.GetButtonDown("Interact")){
+                press = true;
+                Interact.SetActive(false);
+                Cancel.SetActive(true);
                 interactableObject.SetActive(true);
                 player.GetComponent<PlayerMovement_anh>().enabled = false;
             }
-            else if (Input.GetButtonDown("Cancel")){
+            else if (Input.GetButtonDown("Temp Cancel")){
                 interactableObject.SetActive(false);
                 player.GetComponent<PlayerMovement_anh>().enabled = true;
+                press = false;
+                Interact.SetActive(true);
             }
         }
 	}
@@ -40,6 +51,7 @@ public class SetActive : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             PlayerinRange = false;
+            Interact.SetActive(false);
 
         }
     }
