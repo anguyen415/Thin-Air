@@ -17,7 +17,7 @@ public class displayNote : MonoBehaviour
 	void Update()
 	{
 		if(onNote == true)
-			if (Input.GetButtonDown("Cancel"))
+			if (Input.GetButtonDown("Temp Cancel"))
 			{
 				onNote = false;
 				UI.SetActive(false);
