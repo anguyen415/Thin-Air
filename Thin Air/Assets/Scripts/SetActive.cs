@@ -8,6 +8,7 @@ public class SetActive : MonoBehaviour {
     GameObject interactableObject;
     [SerializeField]
     GameObject player;
+   
 
 	// Use this for initialization
 	void Start () {
@@ -23,17 +24,23 @@ public class SetActive : MonoBehaviour {
             }
             else if (Input.GetButtonDown("Cancel")){
                 interactableObject.SetActive(false);
-                player = GameObject.FindWithTag("Player");
                 player.GetComponent<PlayerMovement_anh>().enabled = true;
             }
         }
 	}
-    public void Press()
+    public void OnTriggerEnter(Collider other)
     {
-        PlayerinRange = true;
+        if (other.gameObject.tag == "Player")
+        {
+            PlayerinRange = true;
+        }
     }
-    public void Left()
+    public void OnTriggerExit(Collider other)
     {
-        PlayerinRange = false;
+        if (other.gameObject.tag == "Player")
+        {
+            PlayerinRange = false;
+
+        }
     }
 }

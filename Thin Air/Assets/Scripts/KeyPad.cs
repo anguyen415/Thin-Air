@@ -5,64 +5,78 @@ using UnityEngine.UI;
 
 public class KeyPad : MonoBehaviour {
     private string code = null;
+    private string message = null;
     private int index = 0;
     private string alpha;
+    private bool unlocked = false;
     [SerializeField]
     private Text input;
-   /* [SerializeField]
-    GameObject keyPad;*/
-	// Use this for initialization
-	void Start () {
-		
+    [SerializeField]
+    private Text displaytext;
+    [SerializeField]
+    GameObject electric;
+    [SerializeField]
+    GameObject player;
+    // Use this for initialization
+    void Start () {
+        message = "No power.";
+        displaytext.text = message;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
-    
+        if (electric.GetComponent<ElectricBox>().powerOn)
+        {
+            message = "Enter the code: ";
+            displaytext.text = message;
+        }
+
+
+    }
+
     public void keypadInput(string number)
     {
-        index++;
-        if(index < 5)
+        if (electric.GetComponent<ElectricBox>().powerOn)
         {
-            code = code + number;
-            input.text = code;
+            index++;
+            if (index < 5)
+            {
+                code = code + number;
+                input.text = code;
+            }
         }
     }
     public void clearInput()
     {
-        code = null;
-        input.text = code;
-        index = 0;
-    }
-    public void checkInput()
-    {
-        if(code == "4321")
+        if (electric.GetComponent<ElectricBox>().powerOn)
         {
-            Debug.Log("Test");
-        }
-        else
-        {
-            code = "Error: Incorrect Input. Try Again.";
-            input.text = code;
             code = null;
+            input.text = code;
             index = 0;
         }
     }
-    public void OnTriggerEnter(Collider other)
+    public void checkInput()
     {
-        if (other.gameObject.tag == "Player")
+        if (electric.GetComponent<ElectricBox>().powerOn)
         {
-            FindObjectOfType<SetActive>().Press();
+            if (code == "4321")
+            {
+                unlocked = true;
+                gameObject.SetActive(false);
+                player.GetComponent<PlayerMovement_anh>().enabled = true;
+            }
+            else
+            {
+                code = "Error: Incorrect Input. Try Again.";
+                input.text = code;
+                code = null;
+                index = 0;
+            }
         }
     }
-    public void OnTriggerExit(Collider other)
+    public bool checkLock()
     {
-        if (other.gameObject.tag == "Player")
-        {
-            FindObjectOfType<SetActive>().Left();
-        }
+        return unlocked;
     }
 
 }

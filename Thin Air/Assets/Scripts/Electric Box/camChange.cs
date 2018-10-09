@@ -24,7 +24,7 @@ public class camChange : MonoBehaviour {
 	{
 		if(inGame ==  true)
 			Interact.SetActive(false);
-		if (Input.GetButtonDown("Cancel"))
+		if (Input.GetButtonDown("Temp Cancel"))
 			{
 				_PLAYER.SetActive(true);
 				GetComponent<Collider>().enabled = true;
@@ -41,8 +41,8 @@ public class camChange : MonoBehaviour {
 			inGame = true;
 			Cam.SetActive(true);
 			Light.SetActive(true);
-			_PLAYER.SetActive(false);
-			GetComponent<Collider>().enabled = false;
+            _PLAYER.GetComponent<PlayerMovement_anh>().enabled = false;
+            GetComponent<Collider>().enabled = false;
 
 			Cancel.SetActive(true);
 		}
@@ -54,7 +54,7 @@ public class camChange : MonoBehaviour {
 			inGame = true;
 			Cam.SetActive(true);
 			Light.SetActive(true);
-			_PLAYER.SetActive(false);
+			_PLAYER.GetComponent<PlayerMovement_anh>().enabled = false;
 			GetComponent<Collider>().enabled = false;
 
 			Cancel.SetActive(true);

@@ -21,10 +21,6 @@ public class RotatePlatform : MonoBehaviour {
     {
         
         transform.Rotate(new Vector3(speed * Time.deltaTime, 0, 0));
-        if (transform.eulerAngles.x >70)
-        {
-            speed *= -1;
-        }
     }
 
     
