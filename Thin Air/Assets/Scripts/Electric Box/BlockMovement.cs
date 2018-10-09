@@ -41,14 +41,14 @@ public class BlockMovement : MonoBehaviour {
 
 	bool canMove()
 	{
-		float diff1 = (Mathf.Abs(transform.position.y - spot.transform.position.y));
-		float diff2 = (Mathf.Abs(transform.position.x - spot.transform.position.x));
+		float diff1 = (Mathf.Abs(transform.localPosition.y - spot.transform.localPosition.y));
+		float diff2 = (Mathf.Abs(transform.localPosition.x - spot.transform.localPosition.x));
 
-		if (transform.position.x == spot.transform.position.x)
-			if (diff1 < transform.localScale.x + 0.1f)
+		if (transform.localPosition.x == spot.transform.localPosition.x)
+			if (diff1 < transform.localScale.x + 0.01f)
 				return true;
-		if (transform.position.y == spot.transform.position.y)
-			if (diff2 < transform.localScale.x + 0.1f)
+		if (transform.localPosition.y == spot.transform.localPosition.y)
+			if (diff2 < transform.localScale.x + 0.01f)
 				return true;
 
 		return false;
