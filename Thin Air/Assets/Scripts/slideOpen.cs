@@ -5,6 +5,7 @@ using UnityEngine;
 public class slideOpen : MonoBehaviour {
 	public	GameObject LeftDoor;
 	public GameObject RightDoor;
+    public bool doorUnlocked = false;
 	Vector3 origL, origR;
 	//public GameObject player;
 	GameObject player;
@@ -26,15 +27,16 @@ public class slideOpen : MonoBehaviour {
 		origR = RightDoor.transform.localPosition;
 	}
 
-	// Update is called once per frame
-	void Update ()
-	{
-		checkDistance();
-
-		if (playerClose)
-			openDoors();
-		else
-			closeDoors();
+    // Update is called once per frame
+    void Update()
+    {
+        checkDistance();
+        if (doorUnlocked) {
+            if (playerClose)
+                openDoors();
+            else
+                closeDoors();
+        }
 	}
 
 	void openDoors()
@@ -58,4 +60,16 @@ public class slideOpen : MonoBehaviour {
 		else
 			playerClose = false;
 	}
+
+    public void unlockDoor()
+    {
+        doorUnlocked = true;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            playerClose = true;
+        }
+    }
 }

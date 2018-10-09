@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerKeys : MonoBehaviour {
-    private bool doctorkey;
-    private bool electricroomkey;
-    private bool maintenanceroomkey;
+    private bool[] keys;
 	// Use this for initialization
 	void Start () {
-        doctorkey = false;
-        electricroomkey = false;
-        maintenanceroomkey = false;
+        keys = new bool[5];
+        for(int i = 0; i < 5; i++)
+        {
+            keys[i] = false;
+        }
 }
 	
 	// Update is called once per frame
@@ -20,14 +20,10 @@ public class PlayerKeys : MonoBehaviour {
 
     public void giveKeys(int keynumber) 
     {
-        if(keynumber == 1)
-        {
-            doctorkey = true;
-        }
-        else if (keynumber == 2)
-        {
-            doctorkey = true;
-            maintenanceroomkey = true;
-        }
+        keys[keynumber] = true;
+    }
+    public bool Havekey(int keynumber)
+    {
+        return keys[keynumber];
     }
 }
