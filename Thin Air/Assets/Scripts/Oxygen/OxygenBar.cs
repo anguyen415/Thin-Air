@@ -8,8 +8,10 @@ public class OxygenBar : MonoBehaviour {
     Image oxygenBar;
     [SerializeField]
     private GameObject player;
+	[SerializeField]
+	private Text amount;
 
-    private float currentOxygen;
+	private float currentOxygen;
     private float maxOxygen;
 	// Use this for initialization
 	void Start () {
@@ -23,5 +25,6 @@ public class OxygenBar : MonoBehaviour {
 	void Update () {
         currentOxygen = Oxygen.CurrentOxygen;
         oxygenBar.fillAmount = currentOxygen / maxOxygen;
+		amount.text = currentOxygen.ToString();
 	}
 }

@@ -74,6 +74,6 @@ public class Oxygen : MonoBehaviour
 
     public void SetOxygenText()
     {
-        oxygenText.text = "Oxygen Level: " + (CurrentOxygen/MaxOxygen*100).ToString() + "%";
+        oxygenText.text = (CurrentOxygen/MaxOxygen*100).ToString();
     }
 }
