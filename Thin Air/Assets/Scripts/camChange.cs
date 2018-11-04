@@ -29,7 +29,7 @@ public class camChange : MonoBehaviour {
         {
             if (Input.GetButtonDown("Temp Cancel"))
             {
-                player.GetComponent<PlayerMovement_anh>().enabled = true;
+                player.GetComponent<PlayerMovement_Jon>().enabled = true;
                 player.GetComponent<CharacterController>().enabled = true;
                 GetComponent<Collider>().enabled = true;
                 model.SetActive(true);
@@ -47,7 +47,7 @@ public class camChange : MonoBehaviour {
 
             if (other == player.GetComponent<Collider>() && Input.GetButtonDown("Interact"))
             {
-                player.GetComponent<PlayerMovement_anh>().enabled = false;
+                player.GetComponent<PlayerMovement_Jon>().enabled = false;
                 player.GetComponent<CharacterController>().enabled = false;
                 model.SetActive(false);
                 inGame = true;
@@ -69,7 +69,7 @@ public class camChange : MonoBehaviour {
 
             if (other == player.GetComponent<Collider>() && Input.GetButtonDown("Interact"))
             {
-                player.GetComponent<PlayerMovement_anh>().enabled = false;
+                player.GetComponent<PlayerMovement_Jon>().enabled = false;
                 player.GetComponent<CharacterController>().enabled = false;
                 model.SetActive(false);
                 inGame = true;

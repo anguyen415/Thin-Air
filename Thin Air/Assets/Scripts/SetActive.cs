@@ -29,11 +29,11 @@ public class SetActive : MonoBehaviour {
                 Interact.SetActive(false);
                 Cancel.SetActive(true);
                 interactableObject.SetActive(true);
-                player.GetComponent<PlayerMovement_anh>().enabled = false;
+                player.GetComponent<PlayerMovement_Jon>().enabled = false;
             }
             else if (Input.GetButtonDown("Temp Cancel")){
                 interactableObject.SetActive(false);
-                player.GetComponent<PlayerMovement_anh>().enabled = true;
+                player.GetComponent<PlayerMovement_Jon>().enabled = true;
                 press = false;
                 Interact.SetActive(true);
             }
