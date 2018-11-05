@@ -25,6 +25,6 @@ public class OxygenBar : MonoBehaviour {
 	void Update () {
         currentOxygen = Oxygen.CurrentOxygen;
         oxygenBar.fillAmount = currentOxygen / maxOxygen;
-		amount.text = currentOxygen.ToString();
+		amount.text = Oxygen.CurrentOxygen.ToString();
 	}
 }
