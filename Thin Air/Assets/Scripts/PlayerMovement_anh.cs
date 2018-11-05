@@ -27,17 +27,19 @@ public class PlayerMovement_anh : MonoBehaviour
     [SerializeField]
     private float walljumpRotate;
     private bool initWallJump;
-
+    private bool isGrounded;
+    private int mask = 1 << 9;
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
         isWallJump = false;
         initWallJump = false;
+        GroundCheck();
+        mask = ~mask;
     }
-
     private void Update()
     {
-
+        GroundCheck();
         if (isWallJump)
         {
             if (initWallJump && ((Input.GetAxis("Horizontal") * normal.x) < 0))
@@ -61,7 +63,7 @@ public class PlayerMovement_anh : MonoBehaviour
                 _controller.Move(moveDirection * Time.deltaTime);
 
 
-                if (_controller.isGrounded)
+                if (isGrounded)
                 {
                     isWallJump = false;
                     initWallJump = false;
@@ -73,11 +75,10 @@ public class PlayerMovement_anh : MonoBehaviour
         else
         {
             moveDirection = new Vector3(Input.GetAxis("Horizontal") * Speed, moveDirection.y, Input.GetAxis("Vertical") * Speed);
-            float yStorage = moveDirection.y;
             /* moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
              moveDirection = moveDirection.normalized * Speed;
              moveDirection.y = yStorage;*/
-            if (_controller.isGrounded)
+            if (isGrounded)
             {
                 moveDirection.y = 0f;
                 if (Input.GetButtonDown("Jump"))
@@ -114,7 +115,7 @@ public class PlayerMovement_anh : MonoBehaviour
         if (hit.gameObject.tag == "Wall")
         {
             normal = hit.normal;
-            if (!_controller.isGrounded && hit.normal.y != 0)
+            if (!isGrounded && hit.normal.y != 0)
             {
                 //Debug.DrawRay(hit.point, hit.normal, Color.red, 1.25f);
 
@@ -126,6 +127,24 @@ public class PlayerMovement_anh : MonoBehaviour
 
                 }
             }
+        }
+    }
+    void GroundCheck()
+    {
+        RaycastHit hit;
+        float distance = 4.2f;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, distance,mask))
+        {
+            
+                Debug.DrawLine(transform.position, hit.point, Color.red);
+                isGrounded = true;
+            
+        }
+        else
+        {
+
+            // Debug.DrawLine(transform.position, Vector3.up, Color.white);
+            isGrounded = false;
         }
     }
 }
