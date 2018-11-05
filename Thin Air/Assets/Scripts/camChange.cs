@@ -13,6 +13,7 @@ public class camChange : MonoBehaviour {
 	public GameObject Cancel;
 	public GameObject Interact;
     public GameObject errorMessage;
+    public bool needKey;
 
 	// Use this for initialization
 	void Start()
@@ -40,9 +41,9 @@ public class camChange : MonoBehaviour {
             }
         }
 	}
-	void OnTriggerEnter(Collider other)
-	{
-        if (player.GetComponent<PlayerKeys>().Havekey(4))
+    void OnTriggerEnter(Collider other)
+    {
+        if (player.GetComponent<PlayerKeys>().Havekey(4) || !needKey)
         {
 
             if (other == player.GetComponent<Collider>() && Input.GetButtonDown("Interact"))
@@ -64,7 +65,7 @@ public class camChange : MonoBehaviour {
     }
 	void OnTriggerStay(Collider other)
     {
-        if (player.GetComponent<PlayerKeys>().Havekey(4))
+        if (player.GetComponent<PlayerKeys>().Havekey(4) || !needKey)
         {
 
             if (other == player.GetComponent<Collider>() && Input.GetButtonDown("Interact"))
