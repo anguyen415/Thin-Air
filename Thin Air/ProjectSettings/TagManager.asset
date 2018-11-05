@@ -8,6 +8,7 @@ TagManager:
   - Interactable
   - interUI
   - UI
+  - Wall
   layers:
   - Default
   - TransparentFX

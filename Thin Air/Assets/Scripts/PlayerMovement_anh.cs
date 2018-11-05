@@ -111,18 +111,20 @@ public class PlayerMovement_anh : MonoBehaviour
 
             initWallJump = true;
         }
-
-        normal = hit.normal;
-        if (!_controller.isGrounded && hit.normal.y !=0)
-        { 
-            //Debug.DrawRay(hit.point, hit.normal, Color.red, 1.25f);
-
-            if (Input.GetButtonDown("Jump"))
+        if (hit.gameObject.tag == "Wall")
+        {
+            normal = hit.normal;
+            if (!_controller.isGrounded && hit.normal.y != 0)
             {
-              //  Debug.DrawRay(hit.point, hit.normal, Color.yellow, 1.25f);
-                moveDirection.y = JumpHeight;
-                isWallJump = true;
-               
+                //Debug.DrawRay(hit.point, hit.normal, Color.red, 1.25f);
+
+                if (Input.GetButtonDown("Jump"))
+                {
+                    //  Debug.DrawRay(hit.point, hit.normal, Color.yellow, 1.25f);
+                    moveDirection.y = JumpHeight;
+                    isWallJump = true;
+
+                }
             }
         }
     }
