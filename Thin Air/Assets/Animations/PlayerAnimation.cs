@@ -21,9 +21,19 @@ public class PlayerAnimation : MonoBehaviour {
 			anim.SetBool("isWalking", false);
 
 		if (Input.GetButtonDown("Jump"))
-			anim.ResetTrigger("doJump");
+			anim.SetBool("doJump", true);
 		else
-			anim.ResetTrigger("doJump");
+			anim.SetBool("doJump", false);
+
+		if (Input.GetButton("Sprint"))
+			anim.SetBool("isSprinting", true);
+		else
+			anim.SetBool("isSprinting", false);
+
+		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetButton("Sprint") || Input.GetButtonDown("Jump"))
+			anim.SetBool("isMoving", true);
+		else
+			anim.SetBool("isMoving", false);
 
 	}
 }
