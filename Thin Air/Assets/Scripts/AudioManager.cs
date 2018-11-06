@@ -48,9 +48,9 @@ public class AudioManager : MonoBehaviour
 
 		if (PrevLevel != NextLevel) //Changed Level
 		{
-			BreatheAudio.loop = false;
-			if (!BreatheAudio.isPlaying)
-			{
+		//	BreatheAudio.loop = false;
+		//	if (!BreatheAudio.isPlaying)
+		//	{
 				if (NextLevel == 0)
 				{
 					BreatheAudio.clip = Breath_0;
@@ -74,8 +74,8 @@ public class AudioManager : MonoBehaviour
 			
 				PrevLevel = NextLevel;
 				BreatheAudio.Play();
-				BreatheAudio.loop = true;
-			}
+			//	BreatheAudio.loop = true;
+		//	}
 		}
 		if (Input.GetButtonDown("Jump") && controller.isGrounded)
 			jumpAudio.Play();
