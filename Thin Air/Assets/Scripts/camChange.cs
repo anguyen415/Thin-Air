@@ -7,7 +7,7 @@ public class camChange : MonoBehaviour {
     [SerializeField]
 	GameObject model;
 	float newZ;
-	bool inGame;
+	public bool inGame;
 	public GameObject Cam;
 	public GameObject Light;
 	public GameObject Cancel;

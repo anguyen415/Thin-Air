@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.100110196, g: 0.07735675, b: 0.0870328, a: 1}
+  m_IndirectSpecularColor: {r: 0.099711396, g: 0.07714672, b: 0.08651426, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1341,6 +1341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 1275254039}
+  inGame: 0
   Cam: {fileID: 2081258956}
   Light: {fileID: 170076733}
   Cancel: {fileID: 1330700760}
@@ -1534,6 +1535,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oxygen: 100
+  source: {fileID: 0}
+  deathMusic: {fileID: 0}
+  sounds: {fileID: 0}
+  stepSound: {fileID: 0}
 --- !u!1001 &92590214
 Prefab:
   m_ObjectHideFlags: 0
@@ -14717,6 +14722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 1275254039}
+  inGame: 0
   Cam: {fileID: 966897968}
   Light: {fileID: 1973754187}
   Cancel: {fileID: 1330700760}
@@ -18232,6 +18238,7 @@ MonoBehaviour:
   Jump1: {fileID: 8300000, guid: e7d2ff38385ca6140b41d3cf2e7f4b51, type: 3}
   BreatheAudio: {fileID: 1955288503}
   jumpAudio: {fileID: 340852045}
+  electric: {fileID: 0}
   controller: {fileID: 2040120726}
   Sprint: 0
 --- !u!82 &1082488305
@@ -28227,6 +28234,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oxygen: 100
+  source: {fileID: 534669906}
+  deathMusic: {fileID: 8300000, guid: cc120cec0ae21405688b1b3958a7de94, type: 3}
+  sounds: {fileID: 0}
+  stepSound: {fileID: 0}
 --- !u!4 &1772779200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: a7653c4881e978145a91efdf3c990950,

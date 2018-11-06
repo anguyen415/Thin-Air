@@ -2,24 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimation : MonoBehaviour {
+public class PlayerAnimation : MonoBehaviour
+{
 
 	Animator anim;
 	GameObject player;
 	public float oxygen = 100f;
+	public AudioSource source;
+	public AudioClip deathMusic;
+	public GameObject sounds;
+	public AudioSource stepSound;
+
+	bool dead;
 
 	// Use this for initialization
-	void Start ()
+	void Start()
 	{
 		anim = this.GetComponent<Animator>();
 		player = GameObject.Find("Player");
 		anim.SetBool("Dead", false);
+		sounds = GameObject.Find("Sounds");
+		stepSound = this.GetComponent<AudioSource>();
 	}
-	
+
 	// Update is called once per frame
-	void Update ()
+	void Update()
 	{
-		if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 			anim.SetBool("isWalking", true);
 		else
 			anim.SetBool("isWalking", false);
@@ -39,9 +48,29 @@ public class PlayerAnimation : MonoBehaviour {
 		else
 			anim.SetBool("isMoving", false);
 
-		oxygen = player.GetComponent<Oxygen>().getCurrentOxygen();
+			oxygen = player.GetComponent<Oxygen>().getCurrentOxygen();
 		if (oxygen <= 0.0f)
+		{
+			dead = true;
+			playMusic();
 			anim.SetBool("Dead", true);
+		}
+	}
+
+	void playMusic()
+	{
+		if (dead && source.clip != deathMusic)
+		{
+			source.Stop();
+			source.clip = deathMusic;
+			source.loop = false;
+			source.Play();
+
+		}
+
+		sounds.active = false;
+		player.GetComponent<CharacterController>().enabled = false;
+		player.GetComponent<PlayerMovement_anh>().enabled = false;
 
 	}
 }

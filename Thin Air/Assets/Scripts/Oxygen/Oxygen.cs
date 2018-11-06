@@ -41,7 +41,6 @@ public class Oxygen : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
         if (CurrentOxygen < 0)
         {
             CurrentOxygen = 0;
@@ -52,8 +51,16 @@ public class Oxygen : MonoBehaviour
         }
         if (Time.time > delaytime)
         {
-            
-            HurtPlayer(decreasePerTick);//CurrentOxygen = CurrentOxygen - decreasePerTick;  
+            if (Input.GetButton("Sprint")) {
+
+                HurtPlayer(decreasePerTick * 2f);
+            }
+            else
+            {
+                HurtPlayer(decreasePerTick);
+
+            }
+            //CurrentOxygen = CurrentOxygen - decreasePerTick;  
             delaytime = Time.time + tickRate;
         }
         if (CurrentOxygen <= 0)
@@ -63,7 +70,7 @@ public class Oxygen : MonoBehaviour
         SetOxygenText();
         oxygenBar.fillAmount = CurrentOxygen / MaxOxygen;
     }
-    public void HurtPlayer(int damage)
+    public void HurtPlayer(float damage)
     {
         //CurrentOxygen -= damage;
         if (CurrentOxygen - damage < 0)
@@ -77,7 +84,7 @@ public class Oxygen : MonoBehaviour
             CurrentOxygen -= damage;
         }
     }
-    public void RestoreOxygen(int oxyamount)
+    public void RestoreOxygen(float oxyamount)
     {
         CurrentOxygen += oxyamount;
         if (CurrentOxygen > MaxOxygen)

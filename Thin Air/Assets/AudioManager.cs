@@ -19,18 +19,27 @@ public class AudioManager : MonoBehaviour
 	public AudioClip Jump1;
 
 	public AudioSource BreatheAudio;
+<<<<<<< HEAD:Thin Air/Assets/AudioManager.cs
 	public AudioSource otherAudio;
+=======
+	public AudioSource jumpAudio;
+
+	public GameObject electric;
+	public CharacterController controller;
+>>>>>>> 726f400c23892be6592dc54b217de98bdbad8fb1:Thin Air/Assets/Scripts/AudioManager.cs
 
 	private bool Sprint;
+	private bool Camera;
 
 	void Start()
 	{
 		BreatheAudio.Play();
+		electric = GameObject.Find("Electric Box");
 	}
 
 	void Update()
 	{
-		if (Input.GetButton("Sprint"))
+		if (Input.GetButton("Sprint") && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
 		{
 			if (Sprint == false)
 				NextLevel += 1;
@@ -43,6 +52,18 @@ public class AudioManager : MonoBehaviour
 			Sprint = false;
 		}
 
+		if (electric.GetComponent<camChange>().inGame == true)
+		{
+			if (Camera == false)
+				NextLevel = 0;
+			Camera = true;
+		}
+		else
+		{
+			if (Camera == true)
+				NextLevel = 1;
+			Camera = false;
+		}
 
 		if (PrevLevel != NextLevel) //Changed Level
 		{
