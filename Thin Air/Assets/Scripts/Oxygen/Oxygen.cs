@@ -89,7 +89,7 @@ public class Oxygen : MonoBehaviour
 
     public void SetOxygenText()
     {
-        oxygenText.text = (CurrentOxygen/MaxOxygen*100).ToString();
+        oxygenText.text = Mathf.Floor(CurrentOxygen/MaxOxygen*100).ToString();
     }
 
     public void DamageFlash()
@@ -109,7 +109,7 @@ public class Oxygen : MonoBehaviour
     }
     
 
-    public float getCurentOxygen() {
+    public float getCurrentOxygen() {
         return CurrentOxygen;
     }
 }
