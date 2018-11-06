@@ -19,7 +19,9 @@ public class AudioManager : MonoBehaviour
 	public AudioClip Jump1;
 
 	public AudioSource BreatheAudio;
-	public AudioSource otherAudio;
+	public AudioSource jumpAudio;
+
+	public CharacterController controller;
 
 	private bool Sprint;
 
@@ -74,10 +76,8 @@ public class AudioManager : MonoBehaviour
 				BreatheAudio.Play();
 				BreatheAudio.loop = true;
 			}
-
-			if(Input.GetButtonDown("Jump"))
-				otherAudio.PlayOneShot(Jump1);
-
 		}
+		if (Input.GetButtonDown("Jump") && controller.isGrounded)
+			jumpAudio.Play();
 	}
 }
