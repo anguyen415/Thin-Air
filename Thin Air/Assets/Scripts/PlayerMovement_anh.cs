@@ -84,7 +84,7 @@ public class PlayerMovement_anh : MonoBehaviour
 			moveDirection = new Vector3(Input.GetAxis("Horizontal") * Speed * moveRate, moveDirection.y, Input.GetAxis("Vertical") * Speed * moveRate);
 			float yStorage = moveDirection.y;
 
-			if (isGrounded())
+			if (_controller.isGrounded)
 			{
 				moveDirection.y = 0f;
 				if (Input.GetButtonDown("Jump"))
@@ -128,7 +128,7 @@ public class PlayerMovement_anh : MonoBehaviour
         if (hit.gameObject.tag == "Wall")
         {
             normal = hit.normal;
-            if (!isGrounded() && hit.normal.y != 0)
+            if (!_controller.isGrounded && hit.normal.y != 0)
             {
                 //Debug.DrawRay(hit.point, hit.normal, Color.red, 1.25f);
 

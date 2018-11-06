@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private RaycastHit hit;
         private GameObject player;
         private LayerMask mask;
-
+        private int mask2 = 1 << 9;
         //variables for patrolling
         public GameObject[] waypoints;
         [SerializeField]
@@ -29,6 +29,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public float patrolSpeed = 0.5f;
         //variables for chasing
         public float chaseSpeed = 1f;
+        private Vector3 eyelevel;
         public GameObject target;
 
         // Use this for initialization
@@ -62,21 +63,24 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         }
         private void Update()
         {
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 25f,mask))
+           /* Debug.DrawRay(eyelevel, transform.TransformDirection(Vector3.forward) * 25f, Color.yellow);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward + Vector3.right) * 25f, Color.yellow);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward - Vector3.right) * 25f, Color.yellow);*/
+
+            eyelevel = transform.position;
+            eyelevel.y = transform.position.y + 3.3f;
+            if (Physics.Raycast(eyelevel, transform.TransformDirection(Vector3.forward), out hit, 25f,mask))
             {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                 target = player;
                 state = EnemyAI.State.CHASE;
             }
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 25f, mask))
+            if (Physics.Raycast(eyelevel, transform.TransformDirection(Vector3.forward - Vector3.right), out hit, 25f, mask))
             {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                 target = player;
                 state = EnemyAI.State.CHASE;
             }
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward+Vector3.right), out hit, 25f, mask))
+            if (Physics.Raycast(eyelevel, transform.TransformDirection(Vector3.forward+Vector3.right), out hit, 25f, mask))
             {
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward -Vector3.right) * hit.distance, Color.yellow);
                 target = player;
                 state = EnemyAI.State.CHASE;
             }
@@ -100,7 +104,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
             else if(Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) < 2)
             {
-
                 waypointInd += 1;
                 waypointInd = waypointInd % waypoints.Length;
             }
