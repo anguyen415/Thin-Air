@@ -13,11 +13,13 @@ public class OxygenBar : MonoBehaviour {
 
 	private float currentOxygen;
     private float maxOxygen;
+
+    private Text currentOxygenText;
 	// Use this for initialization
 	void Start () {
-
+        amount = GameObject.Find("oxygenText").GetComponent<Text>();
         oxygenBar = GetComponent<Image>();
-        currentOxygen = Oxygen.CurrentOxygen;
+        currentOxygen = player.GetComponent<Oxygen>().getCurrentOxygen();
         maxOxygen = (player.GetComponent("Oxygen") as Oxygen).MaxOxygen;
 	}
 	
@@ -25,6 +27,6 @@ public class OxygenBar : MonoBehaviour {
 	void Update () {
         currentOxygen = Oxygen.CurrentOxygen;
         oxygenBar.fillAmount = currentOxygen / maxOxygen;
-		amount.text = Oxygen.CurrentOxygen.ToString();
+        amount.text = Mathf.Floor(currentOxygen/maxOxygen*100).ToString();
 	}
 }
