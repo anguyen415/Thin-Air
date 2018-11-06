@@ -19,14 +19,10 @@ public class AudioManager : MonoBehaviour
 	public AudioClip Jump1;
 
 	public AudioSource BreatheAudio;
-<<<<<<< HEAD:Thin Air/Assets/AudioManager.cs
-	public AudioSource otherAudio;
-=======
 	public AudioSource jumpAudio;
 
 	public GameObject electric;
 	public CharacterController controller;
->>>>>>> 726f400c23892be6592dc54b217de98bdbad8fb1:Thin Air/Assets/Scripts/AudioManager.cs
 
 	private bool Sprint;
 	private bool Camera;
@@ -67,9 +63,9 @@ public class AudioManager : MonoBehaviour
 
 		if (PrevLevel != NextLevel) //Changed Level
 		{
-			BreatheAudio.loop = false;
-			if (!BreatheAudio.isPlaying)
-			{
+		//	BreatheAudio.loop = false;
+		//	if (!BreatheAudio.isPlaying)
+		//	{
 				if (NextLevel == 0)
 				{
 					BreatheAudio.clip = Breath_0;
@@ -93,12 +89,13 @@ public class AudioManager : MonoBehaviour
 			
 				PrevLevel = NextLevel;
 				BreatheAudio.Play();
-				BreatheAudio.loop = true;
-			}
-
-			if(Input.GetButtonDown("Jump"))
-				otherAudio.PlayOneShot(Jump1);
-
+			//	BreatheAudio.loop = true;
+		//	}
 		}
+		if (Input.GetButtonDown("Jump") && controller.isGrounded)
+			jumpAudio.Play();
+
+		//if (!BreatheAudio.isPlaying)
+		//	BreatheAudio.Play();
 	}
 }
