@@ -5,7 +5,7 @@ using UnityEngine;
 public class HurtPlayer : MonoBehaviour {
 
     [SerializeField]
-    private int damage;
+    private float damage;
 
     // Use this for initialization
     void Start()
@@ -20,6 +20,14 @@ public class HurtPlayer : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            FindObjectOfType<Oxygen>().HurtPlayer(damage);
+
+        }
+    }
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {

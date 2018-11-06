@@ -31,6 +31,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public float chaseSpeed = 1f;
         private Vector3 eyelevel;
         public GameObject target;
+        public float timer = 5f;
 
         // Use this for initialization
         void Start()
@@ -42,6 +43,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             state = EnemyAI.State.PATROL;
             mask = LayerMask.GetMask("Player");
             player = GameObject.FindWithTag("Player");
+            timer = 5f;
         }
          IEnumerator FSM()
         {
@@ -84,7 +86,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 target = player;
                 state = EnemyAI.State.CHASE;
             }
-
+            if(state == EnemyAI.State.CHASE)
+            {
+                timer -= Time.deltaTime;
+                
+            }
+            if (timer <= 0f)
+            {
+                state = EnemyAI.State.PATROL;
+            }
         }
         private void LateUpdate()
         {
@@ -95,6 +105,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         void Patrol()
         {
             agent.speed = patrolSpeed;
+            timer = 5f;
+
             if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
             {
 
