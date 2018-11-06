@@ -15,9 +15,19 @@ public class Oxygen : MonoBehaviour
     private int decreasePerTick = 1;
     private float delaytime;
     // Use this for initialization
-   
+    [SerializeField]
+    private bool damaged;
+    [SerializeField]
+    private Image damageImage;
+    [SerializeField]
+    private float damageFlashSpeed;
+    [SerializeField]
+    private Color damageFlashColor;
+
+
     void Start()
     {
+        damaged = false;
         delaytime = Time.time + tickRate;
         oxygenBar = (GameObject.Find("oxygenBar").GetComponent<Image>());
         CurrentOxygen = MaxOxygen;
@@ -25,11 +35,12 @@ public class Oxygen : MonoBehaviour
     }
     void Update()
     {
-
+        DamageFlash();
     }
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         if (CurrentOxygen < 0)
         {
             CurrentOxygen = 0;
@@ -40,7 +51,8 @@ public class Oxygen : MonoBehaviour
         }
         if (Time.time > delaytime)
         {
-            HurtPlayer(decreasePerTick);//CurrentOxygen = CurrentOxygen - decreasePerTick;
+            
+            HurtPlayer(decreasePerTick);//CurrentOxygen = CurrentOxygen - decreasePerTick;  
             delaytime = Time.time + tickRate;
         }
         if (CurrentOxygen <= 0)
@@ -55,10 +67,12 @@ public class Oxygen : MonoBehaviour
         //CurrentOxygen -= damage;
         if (CurrentOxygen - damage < 0)
         {
+            damaged = true;
             CurrentOxygen = 0;
         }
         else
         {
+            damaged = true;
             CurrentOxygen -= damage;
         }
     }
@@ -75,5 +89,25 @@ public class Oxygen : MonoBehaviour
     public void SetOxygenText()
     {
         oxygenText.text = (CurrentOxygen/MaxOxygen*100).ToString();
+    }
+
+    public void DamageFlash()
+    {
+        if (damaged)
+        {
+            damageImage.color = damageFlashColor;
+            
+
+        }
+        else
+        {
+            damageImage.color = Color.Lerp(damageImage.color, Color.clear, damageFlashSpeed * Time.deltaTime);
+            
+        }
+        damaged = false;
+    }
+
+    public float getCurentOxygen() {
+        return CurrentOxygen;
     }
 }
