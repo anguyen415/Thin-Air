@@ -44,18 +44,26 @@ public class PauseMenu : MonoBehaviour {
         }*/
 	}
 
-    void FixedUpdate()
-    {
-        
-        if (Oxygen.CurrentOxygen <= 0)
-        {
-            Time.timeScale = 0f;
-            ResumeButton.SetActive(false);
-            DeathText.gameObject.SetActive(true);
-            Pause();
-        }
-    }
-    public void Resume()
+	void FixedUpdate()
+	{
+
+		if (Oxygen.CurrentOxygen <= 0)
+		{
+			StartCoroutine(DeathMenu());
+		}
+	}
+
+	public IEnumerator DeathMenu()
+	{
+		yield return new WaitForSeconds(5f);
+		Time.timeScale = 0f;
+		ResumeButton.SetActive(false);
+		DeathText.gameObject.SetActive(true);
+		Pause();
+
+	}
+
+	public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;

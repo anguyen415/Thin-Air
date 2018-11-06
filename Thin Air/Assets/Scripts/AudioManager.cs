@@ -79,5 +79,8 @@ public class AudioManager : MonoBehaviour
 		}
 		if (Input.GetButtonDown("Jump") && controller.isGrounded)
 			jumpAudio.Play();
+
+		if (!BreatheAudio.isPlaying)
+			BreatheAudio.Play();
 	}
 }

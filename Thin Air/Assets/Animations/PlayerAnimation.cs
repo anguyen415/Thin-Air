@@ -5,11 +5,15 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour {
 
 	Animator anim;
+	GameObject player;
+	public float oxygen = 100f;
 
 	// Use this for initialization
 	void Start ()
 	{
-		anim = this.GetComponent<Animator>();	
+		anim = this.GetComponent<Animator>();
+		player = GameObject.Find("Player");
+		anim.SetBool("Dead", false);
 	}
 	
 	// Update is called once per frame
@@ -34,6 +38,10 @@ public class PlayerAnimation : MonoBehaviour {
 			anim.SetBool("isMoving", true);
 		else
 			anim.SetBool("isMoving", false);
+
+		oxygen = player.GetComponent<Oxygen>().getCurrentOxygen();
+		if (oxygen <= 0.0f)
+			anim.SetBool("Dead", true);
 
 	}
 }

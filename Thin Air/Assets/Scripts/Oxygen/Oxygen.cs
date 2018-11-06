@@ -7,9 +7,9 @@ public class Oxygen : MonoBehaviour
 {
     public Text oxygenText;
     public Image oxygenBar;
-    public static float CurrentOxygen = 100f;
-    public float MaxOxygen = 100f;
-    [SerializeField]
+	public static float CurrentOxygen = 100f;
+	public float MaxOxygen = 100f;
+	[SerializeField]
     private float tickRate = 3; //in ms --> 300 means -1 health every 3 seconds
     [SerializeField]
     private int decreasePerTick = 1;
@@ -30,7 +30,7 @@ public class Oxygen : MonoBehaviour
         damaged = false;
         delaytime = Time.time + tickRate;
         oxygenBar = (GameObject.Find("oxygenBar").GetComponent<Image>());
-        CurrentOxygen = MaxOxygen;
+		CurrentOxygen = MaxOxygen;
         SetOxygenText();
     }
     void Update()
@@ -107,7 +107,7 @@ public class Oxygen : MonoBehaviour
         damaged = false;
     }
 
-    public float getCurentOxygen() {
+    public float getCurrentOxygen() {
         return CurrentOxygen;
     }
 }
