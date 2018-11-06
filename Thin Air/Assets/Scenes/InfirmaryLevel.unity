@@ -112,7 +112,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 10868cc2fdeef5e4e973542056c21d50, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 5c3aafd9e897dfe429ea5ca9e8e3bff4, type: 2}
 --- !u!1 &973516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,6 +1365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a3fcbcded2b6d4f91fc0b5375ce5e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oxygen: 100
 --- !u!1001 &92590214
 Prefab:
   m_ObjectHideFlags: 0
@@ -1922,6 +1923,10 @@ Prefab:
     - target: {fileID: 114613978770525032, guid: 54eb5844754051b40a918a84c33b7c1a,
         type: 2}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 113348, guid: 54eb5844754051b40a918a84c33b7c1a, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3389,7 +3394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &228808578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24701,30 +24706,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1600502866}
   m_CullTransparentMesh: 0
---- !u!1 &1604136143 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 113348, guid: 54eb5844754051b40a918a84c33b7c1a,
-    type: 2}
-  m_PrefabInternal: {fileID: 105132902}
---- !u!114 &1604136144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1604136143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecd3b84ec40a0a748b419b82c9b186ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  character: {fileID: 0}
-  state: 1
-  waypoints: []
-  waypointInd: 0
-  patrolSpeed: 0.5
-  chaseSpeed: 1
-  target: {fileID: 0}
 --- !u!1 &1612423089
 GameObject:
   m_ObjectHideFlags: 0
@@ -26837,6 +26818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a3fcbcded2b6d4f91fc0b5375ce5e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oxygen: 100
 --- !u!4 &1772779200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: a7653c4881e978145a91efdf3c990950,
