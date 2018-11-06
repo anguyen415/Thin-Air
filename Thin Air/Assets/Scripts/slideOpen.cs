@@ -19,6 +19,7 @@ public class slideOpen : MonoBehaviour {
 	public float offsetZ;
 	float Xdistance;
 	float Zdistance;
+    private bool played;
 
 
 	// Use this for initialization
@@ -27,6 +28,7 @@ public class slideOpen : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player");
 		origL = LeftDoor.transform.localPosition;
 		origR = RightDoor.transform.localPosition;
+        played = false;
 	}
 
     // Update is called once per frame
@@ -43,15 +45,21 @@ public class slideOpen : MonoBehaviour {
 
 	void openDoors()
 	{
-        //source.PlayOneShot(swish, 1f);
+        if (!played)
+        {
+            //source.PlayOneShot(swish, 1f);
+            played = true;
+        }
         LeftDoor.transform.localPosition = new Vector3(origL.x + 2.3f, origL.y, origL.z);
 		RightDoor.transform.localPosition = new Vector3(origR.x - 2.3f, origR.y, origR.z);
-	}
+        
+    }
 
 	void closeDoors()
 	{
 		LeftDoor.transform.localPosition = new Vector3(origL.x, origL.y, origL.z);
 		RightDoor.transform.localPosition = new Vector3(origR.x, origR.y, origR.z);
+        played = false;
 	}
 
 	void checkDistance()

@@ -10,6 +10,7 @@ public class bigDoorSlide : MonoBehaviour {
     [SerializeField]
     private bool unlocked = false;
     Animator anim;
+    public AudioSource source;
 	Vector3 origL, origR;
 
 	// Use this for initialization
@@ -23,10 +24,11 @@ public class bigDoorSlide : MonoBehaviour {
     {
         if (checkKeypad.GetComponent<KeyPad>().checkLock() || unlocked)
         {
+            source.enabled = true;
             anim.SetTrigger("Unlock");
         }
    
     }
-
+   
 	
 }

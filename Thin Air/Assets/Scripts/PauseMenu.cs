@@ -7,7 +7,10 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
-
+    public AudioSource source;
+    public AudioClip open;
+    public AudioClip close;
+    public bool played;
 
     public Text DeathText;
 
@@ -18,6 +21,7 @@ public class PauseMenu : MonoBehaviour {
         Resume();
         DeathText.gameObject.SetActive(false);
         ResumeButton.SetActive(true);
+        played = false;
     }
 	
 	// Update is called once per frame
@@ -28,10 +32,12 @@ public class PauseMenu : MonoBehaviour {
             if (GameIsPaused)
             {
                 Resume();
+                
             } 
             else
             {
                 Pause();
+                source.PlayOneShot(close, .1f);
             }
         }
         /*if ((player.GetComponent("Oxygen") as Oxygen).CurrentOxygen == 0)
@@ -65,6 +71,10 @@ public class PauseMenu : MonoBehaviour {
 
 	public void Resume()
     {
+        if (!played)
+        {
+            source.PlayOneShot(open, .1f);
+        }
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;

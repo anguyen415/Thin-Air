@@ -17,11 +17,21 @@ public class KeyPad : MonoBehaviour {
     GameObject electric;
     [SerializeField]
     GameObject player;
+    [SerializeField]
+    private AudioSource source;
+    [SerializeField]
+    private AudioClip successsound;
+    [SerializeField]
+    private AudioClip failsound;
+    private bool played;
+    private float wait;
     // Use this for initialization
     void Start () {
         message = "No power.";
         displaytext.text = message;
-	}
+        played = false;
+        wait = successsound.length;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -30,7 +40,18 @@ public class KeyPad : MonoBehaviour {
             message = "Enter the code: ";
             displaytext.text = message;
         }
+        Debug.Log(wait);
 
+        if (played)
+        {
+            wait -= Time.deltaTime; //reverse count
+        }
+        if (wait < 0f)
+        {
+            unlocked = true;
+            gameObject.SetActive(false);
+            player.GetComponent<PlayerMovement_anh>().enabled = true;
+        }
 
     }
 
@@ -61,9 +82,9 @@ public class KeyPad : MonoBehaviour {
         {
             if (code == "4321")
             {
-                unlocked = true;
-                gameObject.SetActive(false);
-                player.GetComponent<PlayerMovement_anh>().enabled = true;
+                source.PlayOneShot(successsound, .5f);
+                played = true;
+                
             }
             else
             {
@@ -71,8 +92,11 @@ public class KeyPad : MonoBehaviour {
                 input.text = code;
                 code = null;
                 index = 0;
+                source.PlayOneShot(failsound, .5f);
             }
+            
         }
+        
     }
     public bool checkLock()
     {

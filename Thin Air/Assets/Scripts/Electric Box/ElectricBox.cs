@@ -7,7 +7,9 @@ public class ElectricBox : MonoBehaviour {
 	GameObject[] blockOrder = new GameObject[16];
 	int correct = 0;
 	public bool powerOn = false;
-
+    public AudioSource source;
+    public AudioClip onSound;
+    public AudioClip generatorSound;
 	// Will save positions of Correct Path
 	Vector3 p1 = new Vector3();
 	Vector3 p2 = new Vector3();
@@ -28,6 +30,7 @@ public class ElectricBox : MonoBehaviour {
 	{
 		saveSpots();
 		randomShuffle();
+        source.clip = onSound;
 	}
 	
 	// Update is called once per frame
@@ -35,7 +38,12 @@ public class ElectricBox : MonoBehaviour {
 	{
 		if(!powerOn)
 			checkPuzzle();
-	}
+        else
+        {
+            source.enabled = true;
+
+        }
+    }
 
 	void randomShuffle()
 	{
@@ -127,10 +135,12 @@ public class ElectricBox : MonoBehaviour {
 			glowBlock(blockOrder[15], true);
 		else
 			glowBlock(blockOrder[15], false);
-		//
+        //
 
-		if (correct == 9) // (+12) + (-3)
-			powerOn = true;
+        if (correct == 9) // (+12) + (-3)
+        {
+            powerOn = true;
+        }
 		correct = 0;
 	}
 
