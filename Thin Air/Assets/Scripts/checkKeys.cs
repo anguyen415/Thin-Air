@@ -23,10 +23,12 @@ public class checkKeys : MonoBehaviour {
     [SerializeField]
     private AudioClip errorsound;
 
+	public float Volume = 0.15f;
+
     // Use this for initialization
     void Start () {
         notOpened = true;
-
+		source.volume = Volume;
     }
 	
 	// Update is called once per frame
