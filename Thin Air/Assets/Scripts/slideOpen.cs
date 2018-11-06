@@ -6,6 +6,8 @@ public class slideOpen : MonoBehaviour {
 	public	GameObject LeftDoor;
 	public GameObject RightDoor;
     public bool doorUnlocked = false;
+    public AudioSource source;
+    public AudioClip swish;
 	Vector3 origL, origR;
 	//public GameObject player;
 	GameObject player;
@@ -41,7 +43,8 @@ public class slideOpen : MonoBehaviour {
 
 	void openDoors()
 	{
-		LeftDoor.transform.localPosition = new Vector3(origL.x + 2.3f, origL.y, origL.z);
+        //source.PlayOneShot(swish, 1f);
+        LeftDoor.transform.localPosition = new Vector3(origL.x + 2.3f, origL.y, origL.z);
 		RightDoor.transform.localPosition = new Vector3(origR.x - 2.3f, origR.y, origR.z);
 	}
 
