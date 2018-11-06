@@ -84,7 +84,7 @@ public class Oxygen : MonoBehaviour
             CurrentOxygen -= damage;
         }
     }
-    public void RestoreOxygen(int oxyamount)
+    public void RestoreOxygen(float oxyamount)
     {
         CurrentOxygen += oxyamount;
         if (CurrentOxygen > MaxOxygen)
