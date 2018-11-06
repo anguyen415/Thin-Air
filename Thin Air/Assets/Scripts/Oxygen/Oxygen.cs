@@ -15,7 +15,6 @@ public class Oxygen : MonoBehaviour
     private int decreasePerTick = 1;
     private float delaytime;
     // Use this for initialization
-    [SerializeField]
     private bool damaged;
     [SerializeField]
     private Image damageImage;
@@ -35,7 +34,9 @@ public class Oxygen : MonoBehaviour
     }
     void Update()
     {
-        DamageFlash();
+        if (CurrentOxygen / MaxOxygen <= 0.20) {
+            DamageFlash();
+        }
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -88,7 +89,7 @@ public class Oxygen : MonoBehaviour
 
     public void SetOxygenText()
     {
-        oxygenText.text = (CurrentOxygen/MaxOxygen*100).ToString();
+        oxygenText.text = Mathf.Floor(CurrentOxygen/MaxOxygen*100).ToString();
     }
 
     public void DamageFlash()
@@ -106,6 +107,7 @@ public class Oxygen : MonoBehaviour
         }
         damaged = false;
     }
+    
 
     public float getCurrentOxygen() {
         return CurrentOxygen;

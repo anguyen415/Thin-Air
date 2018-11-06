@@ -27,6 +27,7 @@ public class PlayerMovement_anh : MonoBehaviour
     [SerializeField]
     private float walljumpRotate;
     private bool initWallJump;
+    private int mask = 1 << 9;
 
 	//Jon
 	[SerializeField]
@@ -40,6 +41,7 @@ public class PlayerMovement_anh : MonoBehaviour
         isWallJump = false;
         initWallJump = false;
 		Sprint = false;//Jon
+        mask = ~mask;
     }
 
     private void Update()
@@ -67,8 +69,8 @@ public class PlayerMovement_anh : MonoBehaviour
 				playerModel.transform.rotation = Quaternion.Slerp(playerModel.transform.rotation, newRotation, walljumpRotate * Time.deltaTime);
 				_controller.Move(moveDirection * Time.deltaTime);
 
-
-				if (_controller.isGrounded)
+                if(isGrounded())
+ 
 				{
 					isWallJump = false;
 					initWallJump = false;
@@ -82,7 +84,7 @@ public class PlayerMovement_anh : MonoBehaviour
 			moveDirection = new Vector3(Input.GetAxis("Horizontal") * Speed * moveRate, moveDirection.y, Input.GetAxis("Vertical") * Speed * moveRate);
 			float yStorage = moveDirection.y;
 
-			if (_controller.isGrounded)
+			if (isGrounded())
 			{
 				moveDirection.y = 0f;
 				if (Input.GetButtonDown("Jump"))
@@ -126,13 +128,13 @@ public class PlayerMovement_anh : MonoBehaviour
         if (hit.gameObject.tag == "Wall")
         {
             normal = hit.normal;
-            if (!_controller.isGrounded && hit.normal.y != 0)
+            if (!isGrounded() && hit.normal.y != 0)
             {
                 //Debug.DrawRay(hit.point, hit.normal, Color.red, 1.25f);
 
                 if (Input.GetButtonDown("Jump"))
                 {
-                    //  Debug.DrawRay(hit.point, hit.normal, Color.yellow, 1.25f);
+                    //  Debu5g.DrawRay(hit.point, hit.normal, Color.yellow, 1.25f);
                     moveDirection.y = JumpHeight;
                     isWallJump = true;
 
@@ -140,4 +142,15 @@ public class PlayerMovement_anh : MonoBehaviour
             }
         }
     }
+
+    public bool isGrounded()
+    {
+        //get the radius of the players capsule collider, and make it a tiny bit smaller than that
+        float radius = _controller.radius * 0.9f;
+        //get the position (assuming its right at the bottom) and move it up by almost the whole radius
+        Vector3 pos = transform.position + Vector3.down * 3.6f;
+        //returns true if the sphere touches something on that layer
+        return (Physics.CheckSphere(pos, radius, mask, QueryTriggerInteraction.Ignore));
+    }
 }
+
