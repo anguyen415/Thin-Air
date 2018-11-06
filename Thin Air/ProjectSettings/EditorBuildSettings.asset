@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: bf2f9b26964b978469a218a566f21848
   - enabled: 1
-    path: Assets/Scenes/InfirmaryLevel (2).unity
-    guid: c656d47382ddeea4481143e1dcff9160
+    path: Assets/Scenes/InfirmaryLevel_2.unity
+    guid: 5398c4855a9c16440846da2b9c39d960
   m_configObjects: {}

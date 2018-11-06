@@ -29,6 +29,8 @@ public class PlayerMovement_anh : MonoBehaviour
     private bool initWallJump;
     private bool isGrounded;
     private int mask = 1 << 9;
+    private Vector3 offsetfront;
+    private Vector3 offsetback;
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
@@ -49,7 +51,7 @@ public class PlayerMovement_anh : MonoBehaviour
                 _controller.Move(moveDirection * Time.deltaTime);
                 if (Input.GetButtonDown("Jump"))
                 {
-                    moveDirection.y=JumpHeight;
+                    moveDirection.y = JumpHeight;
                     initWallJump = false;
                 }
 
@@ -69,9 +71,9 @@ public class PlayerMovement_anh : MonoBehaviour
                     initWallJump = false;
 
                 }
-                
+
             }
-            } 
+        }
         else
         {
             moveDirection = new Vector3(Input.GetAxis("Horizontal") * Speed, moveDirection.y, Input.GetAxis("Vertical") * Speed);
@@ -101,7 +103,7 @@ public class PlayerMovement_anh : MonoBehaviour
             else
                 _controller.Move(moveDirection * Time.deltaTime);
         }
-       
+
 
     }
 
@@ -131,20 +133,11 @@ public class PlayerMovement_anh : MonoBehaviour
     }
     void GroundCheck()
     {
-        RaycastHit hit;
-        float distance = 4.2f;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, distance,mask))
-        {
-            
-                Debug.DrawLine(transform.position, hit.point, Color.red);
-                isGrounded = true;
-            
-        }
-        else
-        {
-
-            // Debug.DrawLine(transform.position, Vector3.up, Color.white);
-            isGrounded = false;
-        }
+        //get the radius of the players capsule collider, and make it a tiny bit smaller than that
+        float radius = _controller.radius * 0.9f;
+        //get the position (assuming its right at the bottom) and move it up by almost the whole radius
+        Vector3 pos = transform.position + Vector3.down * 3.6f;
+        //returns true if the sphere touches something on that layer
+        isGrounded = Physics.CheckSphere(pos, radius, mask, QueryTriggerInteraction.Ignore  );
     }
 }
