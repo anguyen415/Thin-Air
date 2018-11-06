@@ -1850,6 +1850,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 113348, guid: 54eb5844754051b40a918a84c33b7c1a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54eb5844754051b40a918a84c33b7c1a, type: 2}
   m_IsPrefabAsset: 0
@@ -3290,7 +3294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &228808578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9099,7 +9103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2040120724}
-  amount: {fileID: 0}
+  amount: {fileID: 776356087}
 --- !u!1 &542724967 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: db2106d84e5dd114b914c2b0c2b69a0d,
@@ -12815,7 +12819,7 @@ MonoBehaviour:
   doorUnlocked: 0
   playerClose: 0
   offsetX: -9.5
-  offsetZ: 2.5
+  offsetZ: 4
 --- !u!1 &776356085
 GameObject:
   m_ObjectHideFlags: 0
@@ -15547,7 +15551,7 @@ MonoBehaviour:
   doorUnlocked: 0
   playerClose: 0
   offsetX: -9.5
-  offsetZ: 2.5
+  offsetZ: 4
 --- !u!4 &1009591652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b4812efa5806879408b339e7d31cbbd8,
@@ -15690,7 +15694,7 @@ MonoBehaviour:
   doorUnlocked: 0
   playerClose: 0
   offsetX: -9.5
-  offsetZ: 2.5
+  offsetZ: 4
 --- !u!1 &1018538515
 GameObject:
   m_ObjectHideFlags: 0
