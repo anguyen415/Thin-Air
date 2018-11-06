@@ -92,6 +92,6 @@ public class PauseMenu : MonoBehaviour {
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene("InfirmaryLevel_2");
+        SceneManager.LoadScene("InfirmaryLevel");
     }
 }
