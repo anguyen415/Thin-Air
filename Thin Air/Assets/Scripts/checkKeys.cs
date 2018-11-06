@@ -16,11 +16,19 @@ public class checkKeys : MonoBehaviour {
     private bool notOpened;
     [SerializeField]
     private GameObject door;
+    [SerializeField]
+    private AudioSource source;
+    [SerializeField]
+    private AudioClip beepsound;
+    [SerializeField]
+    private AudioClip errorsound;
+
+	public float Volume = 0.15f;
 
     // Use this for initialization
     void Start () {
         notOpened = true;
-
+		source.volume = Volume;
     }
 	
 	// Update is called once per frame
@@ -42,10 +50,13 @@ public class checkKeys : MonoBehaviour {
                         door.GetComponent<slideOpen>().unlockDoor();
                         successMessage.SetActive(true);
                         gameObject.GetComponent<displayInteract>().removeDisplay();
+                        source.PlayOneShot(beepsound,  1f);
                     }
                     else
                     {
                         errorMessage.SetActive(true);
+                        source.PlayOneShot(errorsound, 1f);
+
                     }
                 }
             }
@@ -66,10 +77,12 @@ public class checkKeys : MonoBehaviour {
                         successMessage.SetActive(true);
                         Destroy(gameObject.GetComponent<BoxCollider>());
                         gameObject.GetComponent<displayInteract>().removeDisplay();
+                        source.PlayOneShot(beepsound,  1f);
                     }
                     else
                     {
                         errorMessage.SetActive(true);
+                        source.PlayOneShot(errorsound, 1f);
                     }
                 }
             }

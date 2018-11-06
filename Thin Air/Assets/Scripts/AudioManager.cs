@@ -21,18 +21,21 @@ public class AudioManager : MonoBehaviour
 	public AudioSource BreatheAudio;
 	public AudioSource jumpAudio;
 
+	public GameObject electric;
 	public CharacterController controller;
 
 	private bool Sprint;
+	private bool Camera;
 
 	void Start()
 	{
 		BreatheAudio.Play();
+		electric = GameObject.Find("Electric Box");
 	}
 
 	void Update()
 	{
-		if (Input.GetButton("Sprint"))
+		if (Input.GetButton("Sprint") && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
 		{
 			if (Sprint == false)
 				NextLevel += 1;
@@ -45,12 +48,24 @@ public class AudioManager : MonoBehaviour
 			Sprint = false;
 		}
 
+		if (electric.GetComponent<camChange>().inGame == true)
+		{
+			if (Camera == false)
+				NextLevel = 0;
+			Camera = true;
+		}
+		else
+		{
+			if (Camera == true)
+				NextLevel = 1;
+			Camera = false;
+		}
 
 		if (PrevLevel != NextLevel) //Changed Level
 		{
-			BreatheAudio.loop = false;
-			if (!BreatheAudio.isPlaying)
-			{
+		//	BreatheAudio.loop = false;
+		//	if (!BreatheAudio.isPlaying)
+		//	{
 				if (NextLevel == 0)
 				{
 					BreatheAudio.clip = Breath_0;
@@ -74,13 +89,13 @@ public class AudioManager : MonoBehaviour
 			
 				PrevLevel = NextLevel;
 				BreatheAudio.Play();
-				BreatheAudio.loop = true;
-			}
+			//	BreatheAudio.loop = true;
+		//	}
 		}
 		if (Input.GetButtonDown("Jump") && controller.isGrounded)
 			jumpAudio.Play();
 
-		if (!BreatheAudio.isPlaying)
-			BreatheAudio.Play();
+		//if (!BreatheAudio.isPlaying)
+		//	BreatheAudio.Play();
 	}
 }
