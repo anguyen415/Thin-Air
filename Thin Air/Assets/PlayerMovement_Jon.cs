@@ -34,6 +34,10 @@ public class PlayerMovement_Jon : MonoBehaviour
 
 	private void Update()
 	{
+		moveDirection = new Vector3(Input.GetAxis("Horizontal") * Speed, moveDirection.y, Input.GetAxis("Vertical") * Speed);
+		/* moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
+		 moveDirection = moveDirection.normalized * Speed;
+		 moveDirection.y = yStorage;*/
 		moveDirection = new Vector3(Input.GetAxis("Horizontal") * Speed * moveRate, moveDirection.y, Input.GetAxis("Vertical") * Speed * moveRate);
 		float yStorage = moveDirection.y;
 
