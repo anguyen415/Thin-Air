@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 13654204}
   - component: {fileID: 19597056}
   - component: {fileID: 11450346}
-  - component: {fileID: 114613978770525032}
+  - component: {fileID: 114474949038989094}
   m_Layer: 0
   m_Name: AIThirdPersonController
   m_TagString: Untagged
@@ -1816,9 +1816,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113348}
-  m_LocalRotation: {x: 0, y: -0.0015990824, z: 0, w: 0.9999988}
-  m_LocalPosition: {x: 7.089757, y: 650.0833, z: -2.3658726}
-  m_LocalScale: {x: 3.2, y: 2.59, z: 4.2}
+  m_LocalRotation: {x: 0, y: 0.027448753, z: 0, w: 0.99962324}
+  m_LocalPosition: {x: 0.5838191, y: 650, z: 56.934395}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 434400}
   - {fileID: 498066}
@@ -2693,7 +2693,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0
+  m_Speed: 0.5
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2716,7 +2716,7 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 113348}
   m_IsPrefabAsset: 1
---- !u!114 &114613978770525032
+--- !u!114 &114474949038989094
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2727,13 +2727,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecd3b84ec40a0a748b419b82c9b186ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 19597056}
+  character: {fileID: 11450346}
   state: 0
-  player: {fileID: 0}
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
-  waypointInd: 1
-  patrolSpeed: 0
-  chaseSpeed: 6
+  waypointInd: 0
+  patrolSpeed: 0.5
+  chaseSpeed: 1
   target: {fileID: 0}
-  rayDirection: {x: 6.601554, y: 3.956665, z: -3.1741273}
