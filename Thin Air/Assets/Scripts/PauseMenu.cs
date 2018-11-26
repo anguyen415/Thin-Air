@@ -8,9 +8,15 @@ public class PauseMenu : MonoBehaviour {
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public AudioSource source;
-    public AudioClip open;
+	public AudioSource Music;
+	public GameObject playerSound;
+	public AudioClip deathMusic;
+	public AudioClip open;
     public AudioClip close;
     public bool played;
+
+	private bool Dead = false;
+	GameObject player;
 
     public Text DeathText;
 
@@ -22,12 +28,15 @@ public class PauseMenu : MonoBehaviour {
         DeathText.gameObject.SetActive(false);
         ResumeButton.SetActive(true);
         played = false;
-    }
-	
+
+		player = GameObject.FindGameObjectWithTag("Player");
+
+	}
+
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !Dead)
         {
             if (GameIsPaused)
             {
@@ -48,19 +57,28 @@ public class PauseMenu : MonoBehaviour {
         {
             restartButton.SetActive(false);
         }*/
+
+
 	}
 
 	void FixedUpdate()
 	{
 
-		if (Oxygen.CurrentOxygen <= 0)
+		if (Oxygen.CurrentOxygen <= 0 && !Dead)
 		{
+			Dead = true;
 			StartCoroutine(DeathMenu());
 		}
 	}
 
 	public IEnumerator DeathMenu()
 	{
+		playerSound.active = false;
+		player.GetComponent<PlayerMovement_anh>().enabled = false;
+		Music.Stop();
+		Music.clip = deathMusic;
+		Music.loop = false;
+		Music.Play();
 		yield return new WaitForSeconds(5f);
 		Time.timeScale = 0f;
 		ResumeButton.SetActive(false);

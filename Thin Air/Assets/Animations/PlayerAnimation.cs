@@ -9,7 +9,6 @@ public class PlayerAnimation : MonoBehaviour
 	GameObject player;
 	public float oxygen = 100f;
 	public AudioSource source;
-	public AudioClip deathMusic;
 	public GameObject sounds;
 	public AudioSource stepSound;
 
@@ -37,40 +36,28 @@ public class PlayerAnimation : MonoBehaviour
 			anim.SetBool("doJump", true);
 		else
 			anim.SetBool("doJump", false);
-
-		if (Input.GetButton("Sprint"))
+		
+		if (Input.GetButton("Sprint") )
 			anim.SetBool("isSprinting", true);
 		else
 			anim.SetBool("isSprinting", false);
 
-		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || Input.GetButton("Sprint") || Input.GetButtonDown("Jump"))
+		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0 || /*Input.GetButton("Sprint") ||*/ Input.GetButtonDown("Jump"))
+		{
 			anim.SetBool("isMoving", true);
+		}
 		else
+		{
 			anim.SetBool("isMoving", false);
+			anim.SetBool("isSprinting", false);
+		}
 
-			oxygen = player.GetComponent<Oxygen>().getCurrentOxygen();
+		oxygen = player.GetComponent<Oxygen>().getCurrentOxygen();
 		if (oxygen <= 0.0f)
 		{
 			dead = true;
-			playMusic();
 			anim.SetBool("Dead", true);
 		}
 	}
 
-	void playMusic()
-	{
-		if (dead && source.clip != deathMusic)
-		{
-			source.Stop();
-			source.clip = deathMusic;
-			source.loop = false;
-			source.Play();
-
-		}
-
-		sounds.active = false;
-		player.GetComponent<CharacterController>().enabled = false;
-		player.GetComponent<PlayerMovement_anh>().enabled = false;
-
-	}
 }

@@ -26,26 +26,43 @@ public class AudioManager : MonoBehaviour
 
 	private bool Sprint;
 	private bool Camera;
+	private bool waitDone;
+	private bool Waiting;
+	private float changeTime;
+
 
 	void Start()
 	{
+		BreatheAudio.clip = Breath_1;
+		BreatheAudio.pitch = lvl1_Pitch;
 		BreatheAudio.Play();
 		electric = GameObject.Find("Electric Box");
+		waitDone = false;
 	}
 
-	void Update()
+	void FixedUpdate()
 	{
 		if (Input.GetButton("Sprint") && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
 		{
-			if (Sprint == false)
+			if (Sprint == false && NextLevel != 3)
 				NextLevel += 1;
+			if(NextLevel == 3)
+				NextLevel -= 1;
 			Sprint = true;
 		}
 		else
 		{
-			if (Sprint == true)
+			if (Sprint == true && NextLevel != 0)
+				NextLevel -= 1;
+			if (NextLevel == 2)
 				NextLevel -= 1;
 			Sprint = false;
+		}
+		
+		if (!Input.GetButton("Sprint") && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
+		{	
+			if(NextLevel == 2)
+				NextLevel = 1;
 		}
 
 		if (electric.GetComponent<camChange>().inGame == true)
@@ -56,16 +73,19 @@ public class AudioManager : MonoBehaviour
 		}
 		else
 		{
-			if (Camera == true)
-				NextLevel = 1;
+//			if (Camera == true)
+//				NextLevel = 1;
 			Camera = false;
 		}
 
+		
 		if (PrevLevel != NextLevel) //Changed Level
 		{
-		//	BreatheAudio.loop = false;
-		//	if (!BreatheAudio.isPlaying)
-		//	{
+			if(!Waiting)
+				StartCoroutine(wait());
+			//	BreatheAudio.loop = false;
+			if (waitDone)
+			{
 				if (NextLevel == 0)
 				{
 					BreatheAudio.clip = Breath_0;
@@ -89,8 +109,10 @@ public class AudioManager : MonoBehaviour
 			
 				PrevLevel = NextLevel;
 				BreatheAudio.Play();
-			//	BreatheAudio.loop = true;
-		//	}
+				//	BreatheAudio.loop = true;
+				waitDone = false;
+				Waiting = false;
+			}
 		}
 		if (Input.GetButtonDown("Jump") && controller.isGrounded)
 			jumpAudio.Play();
@@ -98,4 +120,20 @@ public class AudioManager : MonoBehaviour
 		//if (!BreatheAudio.isPlaying)
 		//	BreatheAudio.Play();
 	}
+
+	public IEnumerator wait()
+	{
+		if (PrevLevel > NextLevel)
+			changeTime = 2.0f;
+		else
+			changeTime = 1.0f;
+
+		if (NextLevel == 3)
+			changeTime = 0.0f;
+
+		Waiting = true;
+		yield return new WaitForSeconds(changeTime);
+		waitDone = true;
+	}
+
 }
