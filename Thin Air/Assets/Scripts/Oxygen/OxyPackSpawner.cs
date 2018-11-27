@@ -9,11 +9,13 @@ public class OxyPackSpawner : MonoBehaviour {
     private float spawnDelay;//in seconds
     [SerializeField]
     private bool spawned = false;
-
+    
     private float delayTime;
-
+   // [SerializeField]
+    //private float tickRate = 5f;
     // Use this for initialization
     void Start() {
+        //delayTime = Time.time + tickRate;
         spawned = true;
         MakeTank();
 
@@ -27,9 +29,10 @@ public class OxyPackSpawner : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        if (!spawned)
+        if (!spawned)// && (Time.time > delayTime))
         {
-
+            //spawned = true;
+           // MakeTank();
             StartCoroutine(WaitForSpawn());
         }
 
@@ -46,5 +49,12 @@ public class OxyPackSpawner : MonoBehaviour {
     }
     public void setSpawn(bool state) {
         spawned = state;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            setSpawn(false);
+        }
     }
 }

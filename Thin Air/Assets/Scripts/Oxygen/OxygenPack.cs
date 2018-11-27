@@ -25,7 +25,7 @@ public class OxygenPack : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             player.GetComponent<Oxygen>().RestoreOxygen(HealAmount);
-            GameObject.FindWithTag("Spawner").GetComponent<OxyPackSpawner>().setSpawn(false);
+            //GameObject.FindWithTag("Spawner").GetComponent<OxyPackSpawner>().setSpawn(false);
             Destroy(gameObject);
         }
     }
