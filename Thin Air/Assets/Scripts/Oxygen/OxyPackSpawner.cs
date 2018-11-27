@@ -37,7 +37,6 @@ public class OxyPackSpawner : MonoBehaviour {
 
     }
 
-
     public IEnumerator WaitForSpawn() {
 
         spawned = true;

@@ -10,6 +10,8 @@ TagManager:
   - UI
   - Wall
   - Spawner
+  - Enemy
+  - PlayerSound
   layers:
   - Default
   - TransparentFX

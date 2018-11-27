@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4714602587477694}
   - component: {fileID: 65622434152122684}
   - component: {fileID: 114874357027093316}
+  - component: {fileID: 114840342716171986}
+  - component: {fileID: 108066253697909848}
   m_Layer: 0
   m_Name: 02Tank
   m_TagString: Untagged
@@ -156,15 +158,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1237459726748980}
-  m_LocalRotation: {x: 0.07609897, y: -0.67426306, z: -0.09829664, w: 0.7279533}
-  m_LocalPosition: {x: 0.6528377, y: 653.0806, z: 18.34961}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.6}
   m_Children:
   - {fileID: 4230112237572588}
   - {fileID: 4113537356896512}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -1.2470001, y: -85.45901, z: -14.229001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23073220145637254
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -345,6 +347,56 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.6208434, y: 3.5599365, z: 2.8041096}
   m_Center: {x: -0.28504252, y: -1.2799683, z: 0.0014944077}
+--- !u!108 &108066253697909848
+Light:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1237459726748980}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 10
+  m_Range: 3
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!114 &114840342716171986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1237459726748980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca2d8a8d0457964baad793aefda8170, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinDegree: 180
+  tiltAngle: 15
 --- !u!114 &114874357027093316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -357,4 +409,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  HealAmount: 10
+  HealAmount: 25
