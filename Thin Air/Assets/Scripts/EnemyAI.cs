@@ -32,6 +32,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         private Vector3 eyelevel;
         public GameObject target;
         public float timer = 5f;
+        public GameObject gas;
+        public bool awaken;
 
         // Use this for initialization
         void Start()
@@ -44,6 +46,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             mask = LayerMask.GetMask("Player");
             player = GameObject.FindWithTag("Player");
             timer = 5f;
+            awaken = false;
+
         }
          IEnumerator FSM()
         {
@@ -93,12 +97,15 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
             if (timer <= 0f)
             {
-                state = EnemyAI.State.PATROL;
+                despawn();
             }
         }
         private void LateUpdate()
         {
-            StartCoroutine("FSM");
+            if (awaken)
+            {
+                StartCoroutine("FSM");
+            }
 
         }
         
@@ -130,6 +137,13 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             agent.SetDestination(target.transform.position);
             character.Move(agent.desiredVelocity, false, false);
         }
+        void spawn()
+        {
 
+        }
+        void despawn()
+        {
+
+        }
     }
 }
