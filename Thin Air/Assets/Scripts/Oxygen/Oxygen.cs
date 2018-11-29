@@ -9,10 +9,10 @@ public class Oxygen : MonoBehaviour
     public Image oxygenBar;
 	public static float CurrentOxygen = 100f;
 	public float MaxOxygen = 100f;
-	[SerializeField]
-    private float tickRate = 3; //in ms --> 300 means -1 health every 3 seconds
-
-    public float decreasePerTick = 1;
+	//[SerializeField]
+    public float tickRate = 3; //in ms --> 300 means -1 health every 3 seconds
+    [SerializeField]
+    private float decreasePerTick = 1;
     private float delaytime;
     // Use this for initialization
     private bool damaged;
@@ -34,9 +34,9 @@ public class Oxygen : MonoBehaviour
     }
     void Update()
     {
-        if (CurrentOxygen / MaxOxygen <= 0.20) {
+        //if (CurrentOxygen / MaxOxygen <= 0.20) {
             DamageFlash();
-        }
+        //}
     }
     // Update is called once per frame
     void FixedUpdate()
