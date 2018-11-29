@@ -15,11 +15,12 @@ public class camChange : MonoBehaviour {
     public GameObject errorMessage;
     public bool needKey;
 
+    private float prevTickRate;
 	// Use this for initialization
 	void Start()
 	{
 		player = GameObject.Find("Player");
-
+        prevTickRate = player.GetComponent<Oxygen>().decreasePerTick;
     }
 
 	// Update is called once per frame
@@ -32,6 +33,7 @@ public class camChange : MonoBehaviour {
             {
                 player.GetComponent<PlayerMovement_anh>().enabled = true;
                 player.GetComponent<CharacterController>().enabled = true;
+                player.GetComponent<Oxygen>().decreasePerTick = prevTickRate;
                 GetComponent<Collider>().enabled = true;
                 model.SetActive(true);
                 Cam.SetActive(false);
@@ -50,6 +52,7 @@ public class camChange : MonoBehaviour {
             {
                 player.GetComponent<PlayerMovement_anh>().enabled = false;
                 player.GetComponent<CharacterController>().enabled = false;
+                player.GetComponent<Oxygen>().decreasePerTick = prevTickRate/2;
                 model.SetActive(false);
                 inGame = true;
                 Cam.SetActive(true);
@@ -72,6 +75,7 @@ public class camChange : MonoBehaviour {
             {
                 player.GetComponent<PlayerMovement_anh>().enabled = false;
                 player.GetComponent<CharacterController>().enabled = false;
+                player.GetComponent<Oxygen>().decreasePerTick = prevTickRate / 3;
                 model.SetActive(false);
                 inGame = true;
                 Cam.SetActive(true);

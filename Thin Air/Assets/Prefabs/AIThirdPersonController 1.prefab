@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 65554078077609540}
   - component: {fileID: 82266658478604178}
   m_Layer: 0
-  m_Name: AIThirdPersonController
+  m_Name: AIThirdPersonController 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
