@@ -16,7 +16,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             PATROL,
             CHASE
         }
-
+        public float giveUpTimer;
         public State state;
         private RaycastHit hit;
         private GameObject player;
@@ -61,7 +61,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             lightHelmet.SetActive(false);
             timeAlive = 1;
             hasRespawn = false;
-            timer = 25f;
+            timer = giveUpTimer;
             awakenTimer = 5f;
 
         }
@@ -168,7 +168,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         void Patrol()
         {
             agent.speed = patrolSpeed;
-            timer = 25f;
+            timer = giveUpTimer;
 
             if (Vector3.Distance(this.transform.position, waypoints[waypointInd].transform.position) >= 2)
             {
