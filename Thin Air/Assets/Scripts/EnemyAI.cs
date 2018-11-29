@@ -62,7 +62,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             timeAlive = 1;
             hasRespawn = false;
             timer = giveUpTimer;
-            awakenTimer = 5f;
+            awakenTimer = 2f;
 
         }
          IEnumerator FSM()
