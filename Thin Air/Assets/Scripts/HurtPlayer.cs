@@ -37,5 +37,11 @@ public class HurtPlayer : MonoBehaviour {
 			playerSound.GetComponent<AudioManager>().NextLevel = 3;
         }
     }
-
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            playerSound.GetComponent<AudioManager>().NextLevel = 2;
+        }
+    }
 }
