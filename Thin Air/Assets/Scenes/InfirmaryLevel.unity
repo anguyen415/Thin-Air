@@ -40315,7 +40315,7 @@ MonoBehaviour:
   oxygenText: {fileID: 776356087}
   oxygenBar: {fileID: 539158508}
   MaxOxygen: 100
-  tickRate: 1.5
+  tickRate: 2
   decreasePerTick: 1
   damageImage: {fileID: 1072759976}
   damageFlashSpeed: 0.8
