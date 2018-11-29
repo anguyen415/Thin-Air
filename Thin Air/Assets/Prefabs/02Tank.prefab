@@ -409,4 +409,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  HealAmount: 10
+  HealAmount: 20

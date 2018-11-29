@@ -25,7 +25,7 @@ public class HurtPlayer : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            FindObjectOfType<Oxygen>().HurtPlayer(damage);
+            //FindObjectOfType<Oxygen>().HurtPlayer(damage);
 			playerSound.GetComponent<AudioManager>().NextLevel = 3;
 		}
 	}
