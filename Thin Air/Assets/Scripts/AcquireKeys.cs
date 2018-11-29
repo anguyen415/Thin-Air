@@ -7,6 +7,8 @@ public class AcquireKeys : MonoBehaviour {
     GameObject player;
     [SerializeField]
     int key;
+    [SerializeField]
+    private AudioClip pickUp;
 	// Use this for initialization
 	void Start () {
 		
@@ -21,6 +23,7 @@ public class AcquireKeys : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             player.GetComponent<PlayerKeys>().giveKeys(key);
+            AudioSource.PlayClipAtPoint(pickUp, transform.position);
             Destroy(gameObject);
         }
     }

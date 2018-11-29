@@ -31,7 +31,18 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         public float chaseSpeed = 1f;
         private Vector3 eyelevel;
         public GameObject target;
-        public float timer = 5f;
+        public float timer = 20f;
+        public float awakenTimer = 10f;
+        public GameObject gas;
+        public bool awaken;
+        public int timeAlive;
+        public Animator anim;
+        public GameObject lightHelmet;
+        public AudioSource audio;
+        public AudioClip chaseSound;
+        public AudioClip deathSound;
+        public AudioClip patrolSound;
+        AnimatorClipInfo[] m_AnimatorClipInfo;
 
         // Use this for initialization
         void Start()
@@ -43,7 +54,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             state = EnemyAI.State.PATROL;
             mask = LayerMask.GetMask("Player");
             player = GameObject.FindWithTag("Player");
-            timer = 5f;
+            awaken = false;
+            anim.SetBool("isDead", true);
+            gas.SetActive(false);
+            lightHelmet.SetActive(false);
+            timeAlive = 1;
+
         }
          IEnumerator FSM()
         {
@@ -63,42 +79,72 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             yield return null;
 
         }
+       
         private void Update()
         {
-           /* Debug.DrawRay(eyelevel, transform.TransformDirection(Vector3.forward) * 25f, Color.yellow);
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward + Vector3.right) * 25f, Color.yellow);
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward - Vector3.right) * 25f, Color.yellow);*/
+             Debug.DrawRay(eyelevel, transform.TransformDirection(Vector3.forward) * 25f, Color.yellow);
+             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward + new Vector3(.5f,0,0)) * 25f, Color.yellow);
+             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward - new Vector3(.5f, 0, 0)) * 25f, Color.yellow);
+             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward + new Vector3(.25f, 0, 0)) * 25f, Color.yellow);
+             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward - new Vector3(.25f, 0, 0)) * 25f, Color.yellow); 
 
+            awakenTimer -= Time.deltaTime;
+            if ((awakenTimer <= 0f) && (timeAlive ==1))
+            {
+                spawn();
+                timeAlive = 0;
+            }
+            if (timer <= 0f)
+            {
+                despawn();
+            }
             eyelevel = transform.position;
             eyelevel.y = transform.position.y + 3.3f;
-            if (Physics.Raycast(eyelevel, transform.TransformDirection(Vector3.forward), out hit, 25f,mask))
+            if (Physics.Raycast(eyelevel, transform.TransformDirection(Vector3.forward), out hit, 15f,mask))
             {
                 target = player;
                 state = EnemyAI.State.CHASE;
             }
-            if (Physics.Raycast(eyelevel, transform.TransformDirection(Vector3.forward - Vector3.right), out hit, 25f, mask))
+   
+            if (Physics.Raycast(eyelevel, transform.TransformDirection(Vector3.forward - new Vector3(.5f, 0, 0)), out hit, 15f, mask))
             {
                 target = player;
                 state = EnemyAI.State.CHASE;
             }
-            if (Physics.Raycast(eyelevel, transform.TransformDirection(Vector3.forward+Vector3.right), out hit, 25f, mask))
+            if (Physics.Raycast(eyelevel, transform.TransformDirection(Vector3.forward + new Vector3(.5f, 0, 0)), out hit, 15f, mask))
             {
                 target = player;
                 state = EnemyAI.State.CHASE;
             }
-            if(state == EnemyAI.State.CHASE)
+            if (Physics.Raycast(eyelevel, transform.TransformDirection(Vector3.forward - new Vector3(.25f, 0, 0)), out hit, 15f, mask))
+            {
+                target = player;
+                state = EnemyAI.State.CHASE;
+            }
+            if (Physics.Raycast(eyelevel, transform.TransformDirection(Vector3.forward + new Vector3(.25f, 0, 0)), out hit, 15f, mask))
+            {
+                target = player;
+                state = EnemyAI.State.CHASE;
+            }
+
+            if (state == EnemyAI.State.CHASE)
             {
                 timer -= Time.deltaTime;
                 
             }
-            if (timer <= 0f)
-            {
-                state = EnemyAI.State.PATROL;
-            }
+           
         }
         private void LateUpdate()
         {
-            StartCoroutine("FSM");
+            if (awaken)
+            {
+                m_AnimatorClipInfo = anim.GetCurrentAnimatorClipInfo(0);
+                if (m_AnimatorClipInfo[0].clip.ToString() == "Armature|Possessed (UnityEngine.AnimationClip)")
+                {
+                    StartCoroutine("FSM");
+                }
+            }
+           
 
         }
         
@@ -130,6 +176,32 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             agent.SetDestination(target.transform.position);
             character.Move(agent.desiredVelocity, false, false);
         }
+        void spawn()
+        {
 
+            gas.SetActive(true);
+            lightHelmet.SetActive(true);
+            anim.SetBool("isDead", false);
+            anim.SetBool("isSpawn", true);
+            awaken = true;
+            gas.GetComponent<GasEnemyAnimation>().setSpawn();
+            audio.clip = patrolSound;
+            audio.Play(1);
+            audio.loop = true;
+
+        }
+        void despawn()
+        {
+            anim.SetBool("isDead", true);
+            anim.SetBool("isSpawn", false);
+            awaken = false;
+            agent.isStopped = true;
+            StopCoroutine("FSM");
+            lightHelmet.SetActive(false);
+            gas.GetComponent<GasEnemyAnimation>().setDie();
+            audio.loop = false;
+
+
+        }
     }
 }

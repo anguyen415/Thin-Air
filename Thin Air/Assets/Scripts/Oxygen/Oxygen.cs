@@ -11,8 +11,8 @@ public class Oxygen : MonoBehaviour
 	public float MaxOxygen = 100f;
 	[SerializeField]
     private float tickRate = 3; //in ms --> 300 means -1 health every 3 seconds
-    [SerializeField]
-    private int decreasePerTick = 1;
+
+    public float decreasePerTick = 1;
     private float delaytime;
     // Use this for initialization
     private bool damaged;
