@@ -78,6 +78,7 @@ public class PauseMenu : MonoBehaviour {
 		Music.Stop();
 		Music.clip = deathMusic;
 		Music.loop = false;
+		Music.volume = 0.8f;
 		Music.Play();
 		yield return new WaitForSeconds(5f);
 		Time.timeScale = 0f;

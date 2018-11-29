@@ -1804,18 +1804,18 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.8
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 27
+  Priority: 95
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 50
+  MinDistance: 15
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2339,7 +2339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 195495954066452272}
   character: {fileID: 114951850636270626}
-  state: 0
+  state: 1
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
