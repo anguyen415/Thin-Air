@@ -61,6 +61,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             lightHelmet.SetActive(false);
             timeAlive = 1;
             hasRespawn = false;
+            timer = 25f;
+            awakenTimer = 5f;
 
         }
          IEnumerator FSM()
@@ -89,16 +91,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward - new Vector3(.5f, 0, 0)) * 25f, Color.yellow);
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward + new Vector3(.25f, 0, 0)) * 25f, Color.yellow);
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward - new Vector3(.25f, 0, 0)) * 25f, Color.yellow);
-            if (!hasRespawn) {
-                awakenTimer -= Time.deltaTime;
-            }
-            else
-            {
-                state = EnemyAI.State.PATROL;
-                timeAlive = 1;
-                timer = 25f;
-                hasRespawn = false;
-            }
+            awakenTimer -= Time.deltaTime;
+            
             if ((awakenTimer <= 0f) && (timeAlive ==1))
             {
                 spawn();
@@ -106,7 +100,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             }
             if (timer <= 0f)
             {
-                despawn();
+                state = EnemyAI.State.PATROL;
             }
            
             eyelevel = transform.position;
@@ -226,7 +220,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
             audio.loop = false;
             hasRespawn = true;
             awakenTimer = 30f;
-            state = EnemyAI.State.PATROL;
 
 
         }
