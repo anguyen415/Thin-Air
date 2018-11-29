@@ -49,6 +49,7 @@ public class MainMenu : MonoBehaviour
 	public void StartCredits()
 	{
 		Credits.active = true;
+		this.gameObject.active = false;
 	}
 
 	public IEnumerator move()
