@@ -10,10 +10,12 @@ public class ElectricBox : MonoBehaviour {
     public AudioSource source;
     public AudioClip onSound;
     public AudioClip generatorSound;
+
 	// Will save positions of Correct Path
 	Vector3 p1 = new Vector3();
 	Vector3 p2 = new Vector3();
 	Vector3 p3 = new Vector3();
+	Vector3 p4 = new Vector3();//
 	Vector3 p5 = new Vector3();
 	Vector3 p6 = new Vector3();
 	Vector3 p7 = new Vector3();
@@ -22,6 +24,8 @@ public class ElectricBox : MonoBehaviour {
 	Vector3 p10 = new Vector3();
 	Vector3 p11 = new Vector3();
 	Vector3 p12 = new Vector3();
+	Vector3 p13 = new Vector3();//
+	Vector3 p14 = new Vector3();//
 	Vector3 p15 = new Vector3();
 	//
 
@@ -57,6 +61,12 @@ public class ElectricBox : MonoBehaviour {
 			blockOrder[i].transform.position = temp;
 			//
 		}
+
+		// EASY MODE FOR JUDGES -- DOES NOT WORK DONT USE
+		//EasyMode();
+		//
+		
+
 	}
 
 	void checkPuzzle()
@@ -182,6 +192,7 @@ public class ElectricBox : MonoBehaviour {
 		p1 = blockOrder[1].transform.position;
 		p2 = blockOrder[2].transform.position;
 		p3 = blockOrder[3].transform.position;
+		p4 = blockOrder[4].transform.position;//
 		p5 = blockOrder[5].transform.position;
 		p6 = blockOrder[6].transform.position;
 		p7 = blockOrder[7].transform.position;
@@ -190,7 +201,28 @@ public class ElectricBox : MonoBehaviour {
 		p10 = blockOrder[10].transform.position;
 		p11 = blockOrder[11].transform.position;
 		p12 = blockOrder[12].transform.position;
+		p13 = blockOrder[13].transform.position;//
+		p14 = blockOrder[14].transform.position;//
 		p15 = blockOrder[15].transform.position;
 	}
 
+	void EasyMode()
+	{
+		blockOrder[1].transform.position = p1;
+		blockOrder[2].transform.position = p2;
+		blockOrder[3].transform.position = p3;
+		blockOrder[4].transform.position = p4;//
+		blockOrder[5].transform.position = p5;
+		blockOrder[6].transform.position = p6;
+		blockOrder[7].transform.position = p7;
+		blockOrder[8].transform.position = p8;
+		blockOrder[9].transform.position = p9;
+		blockOrder[10].transform.position = p15;
+		blockOrder[11].transform.position = p14;
+		blockOrder[12].transform.position = p13;
+		blockOrder[13].transform.position = p12;
+		blockOrder[14].transform.position = p11;
+		blockOrder[15].transform.position = p10;
+
+	}
 }

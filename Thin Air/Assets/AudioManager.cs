@@ -46,8 +46,8 @@ public class AudioManager : MonoBehaviour
 		{
 			if (Sprint == false && NextLevel != 3)
 				NextLevel += 1;
-			if(NextLevel == 3)
-				NextLevel -= 1;
+			if(NextLevel > 2)
+				NextLevel = 2;
 			Sprint = true;
 		}
 		else
